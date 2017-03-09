@@ -1,0 +1,25 @@
+extends ../layouts/default
+
+block form
+  .form-signin
+    if message != ""
+      .alert.alert-danger.animated.fadeIn
+        button.close(type='button', data-dismiss='alert') ×
+        div= message
+
+    form.form-signin(action="/users/session", method="post", role="form")
+      input(type='hidden', name='_csrf', value=_csrf)
+      .list-group
+        .list-group-item
+          input.form-control.no-border(type='text', autocomplete="off" placeholder='Email', name="email")
+        .list-group-item
+          input.form-control.no-border(type='password', placeholder='Password', name="password")
+
+      br
+      button.btn.btn-lg.btn-primary.btn-block.btn-login(type='submit') Sign in
+
+      a(href="forgot-password" class="forgot-password") Forgot Password
+
+      div.clearfix
+
+  

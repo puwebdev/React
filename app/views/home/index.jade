@@ -1,0 +1,14 @@
+extends ../layouts/default
+
+block form
+  .form-choose-world
+    form#form-choose-world.form-choose-world(action="/worlds", method="get", role="form")
+      .list-group
+        label(for="world") Please select an xPert World:
+        .list-group-item
+          input#_csrf(type='hidden', name='_csrf', value=_csrf)
+          select.form-control.no-border(name="world" id="world")
+            each world in worldsList
+              option(value="#{world.slug}") #{world.title}
+      br
+      button#btn-go-to-world.btn.btn-lg.btn-primary.btn-block.progress-button(type='submit' data-style="fill" data-horizontal) Go!

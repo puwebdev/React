@@ -1,0 +1,11 @@
+extends ../layouts/default
+
+block main
+  .profile-card.panel-body.b.bg-white
+    .media
+      .media-body
+        h4.media-heading @#{user.username}
+        
+
+  section.m-t-md.block-tricks-user.block-tricks(data-id="#{user._id}", data-username="#{user.username}")
+    .clearfix

@@ -1,0 +1,438 @@
+ [ {
+    "title": "HFC Network Overview",
+    "id": "HFC_Network_Overview_1",
+    "description": "Learn about the <span class=\"gloss\" data-highlight=\"Headend\" data-viewid=\"Headend_1\">headend</span>, the <span class=\"gloss\" data-viewid=\"Powered_Node_1\">outside plant</span>, and the customer premises.",
+    "html": "<ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"../opXLDemo/SCTE/Network_Architecture/index_scorm.html\">SCTE/ISBE: Network Architecture</a></li><li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://players.brightcove.net/1064276753001/SyeOpPb0X_default/index.html?playlistId=4993905195001\">Arris: Fiber Deep Architecture</a></li>  <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"280px\" data-framewidth=\"480px\" href=\"http://link.brightcove.com/services/player/bcpid4083164679001?bckey=AQ~~,AAAA98vWemk~,-yHZPGWEIXrRXpO4O_gw8K14Her1kmFT&bctid=4209598277001\">Arris: Aging Plant Overview</a></li>  </ul>",
+    "key": 57,
+    "cameraPosition": {
+        "x": -10204.297100488948,
+        "y": 3263.316874312692,
+        "z": -22487.411263119466
+    },
+    "targetPosition": {
+        "x": -2864.2764447230084,
+        "y": 147.77365836916582,
+        "z": -16452.720944427267
+    },
+    "screenshot": "HFC-Network-Overview-0-2016-10-07-13-5509.png"
+}, {
+    "title": "Powered Node",
+    "id": "Powered_Node_1",
+    "description": "The node is the interface between the <span class=\"gloss\" data-highlight=\"Fiberoptic_Cable\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span> and the <span class=\"gloss\" data-highlight=\"Hardline_Cable\" data-viewid=\"Hardline_Cable_2\">hardline cable</span> in a HFC network. The node is an active device, meaning that it requires power from a <span class=\"gloss\" data-highlight=\"Power_Supply\" data-viewid=\"Power_Supply_1\">power supply</span>, inserted into the node by the <span class=\"gloss\" data-highlight=\"Power_Inserter\" data-viewid=\"Power_Inserter_1\">power inserter.",
+    "key": 49,
+    "cameraPosition": {
+        "x": -3402.3,
+        "y": 243.2,
+        "z": -21080.7
+    },
+    "targetPosition": {
+        "x": -3199.3,
+        "y": 252.7,
+        "z": -21086
+    },
+    "screenshot": "Powered-Node-2-2016-10-07-13-5509.png"
+}, {
+    "title": "Power Supply Cabinet",
+    "id": "Power_Supply_Cabinet_1",
+    "description": "",
+    "selected": "Cabinet03",
+    "key": 50,
+    "cameraPosition": {
+        "x": -3256.5,
+        "y": 221,
+        "z": -21079.7
+    },
+    "targetPosition": {
+        "x": -3200,
+        "y": 220.1,
+        "z": -21078.2
+    },
+    "screenshot": "Power-Supply-Cabinet-3-2016-10-07-13-5509.png"
+}, {
+    "title": "Power Supply",
+    "id": "Power_Supply_1",
+    "selected": "Box004",
+    "doubleclick": "Box004",
+    "description": "",
+    "key": 51,
+	"cameraPosition": {
+		"x": -3212.0419878582597,
+		"y": 229.7090422101315,
+		"z": -21077.98563100184
+	},
+	"targetPosition": {
+		"x": -3200,
+		"y": 229.70904221013157,
+		"z": -21077.98563100184
+	},
+    "screenshot": "Power-Supply-5-2016-10-07-13-5509.png"
+}, {
+    "title": "Power Supply Cabinet",
+    "id": "Power_Supply_Cabinet_2",
+    "description": "",
+    "selected": "Cabinet03",
+    "key": "",
+    "doubleclick": "Cabinet03",
+    "cameraPosition": {
+        "x": -3260.134787597848,
+        "y": 185.8636024093769,
+        "z": -21117.215741871423
+    },
+    "targetPosition": {
+        "x": -3199.3045641345398,
+        "y": 215.75258513267895,
+        "z": -21081.282890017636
+    },
+    "screenshot": "Power-Supply-Cabinet-4-2016-10-07-13-5230.png"
+}, {
+    "title": "Aerial powered node",
+    "id": "Aerial_Powered_Node_1",
+    "description": "",
+    "key": 52,
+    "cameraPosition": {
+        "x": -3344.1360899871975,
+        "y": 190.1833648945053,
+        "z": -21381.91463673069
+    },
+    "targetPosition": {
+        "x": -3204.971664951276,
+        "y": 237.8423428888848,
+        "z": -21113.101271235384
+    },
+    "screenshot": "Aerial-powered-node-6-2016-10-07-13-5509.png"
+}, {
+    "title": "Node Assembly",
+    "id": "Node_Assembly_1",
+    "description": "",
+    "key": 56,
+    "cameraPosition": {
+        "x": -3231.5395826638796,
+        "y": 276.21620428736225,
+        "z": -21233.958784296654
+    },
+    "targetPosition": {
+        "x": -3172.2318726930935,
+        "y": 292.0267794242369,
+        "z": -21162.20647741267
+    },
+    "screenshot": "Node-Assembly-10-2016-10-07-13-5509.png"
+}, {
+    "title": "Node",
+    "id": "Node_1",
+    "selected": "Node",
+    "doubleclick": "Node",
+    "description": "The description should come from gearList2.json Node.description",
+    "key": 53,
+    "cameraPosition": {
+        "x": -3234.797910265497,
+        "y": 289.2947753412953,
+        "z": -21149.741542836953
+    },
+    "targetPosition": {
+        "x": -3202.7687296634954,
+        "y": 290.79367788178234,
+        "z": -21150.577772675773
+    },
+    "screenshot": "Node-7-2016-10-07-13-5509.png"
+}, {
+    "title": "Power Inserter",
+    "id": "Power_Inserter_1",
+    "description": "",
+    "selected": "Power_Inserter",
+    "key": "",
+    "doubleclick": "Power_Inserter",
+    "cameraPosition": {
+        "x": -3158.4560715028574,
+        "y": 319.8049149319768,
+        "z": -21119.30645049118
+    },
+    "targetPosition": {
+        "x": -3186.4565282104727,
+        "y": 273.72138224739376,
+        "z": -21135.80534724301
+    },
+    "screenshot": "Power-Inserter-15-2016-10-07-13-5509.png"
+}, {
+    "title": "Hardline Cable",
+    "id": "Power_Inserter_Cable",
+    "description": "",
+    "selected": "Power_Inserter_Cable",
+    "key": "",
+    "doubleclick": "Power_Inserter_Cable",
+    "cameraPosition": {
+        "x": -3022.3314570783427,
+        "y": 189.25294080566545,
+        "z": -21148.047102789667
+    },
+    "targetPosition": {
+        "x": -3190.6244383596054,
+        "y": 255.33999712807164,
+        "z": -21116.88061174589
+    },
+    "screenshot": "Hardline-Cable-16-2016-10-07-13-5509.png"
+}, {
+    "title": "Tap",
+    "id": "Tap_1",
+    "selected": "Tap",
+    "doubleclick": "Tap",
+    "description": "",
+    "key": 55,
+    "cameraPosition": {
+        "x": -3164.602518541711,
+        "y": 285.7556884369295,
+        "z": -21164.992763807688
+    },
+    "targetPosition": {
+        "x": -3172.2318726930935,
+        "y": 292.0267794242369,
+        "z": -21162.20647741267
+    },
+    "screenshot": "Tap-9-2016-10-07-13-5509.png"
+}, {
+    "title": "Drop Cable",
+    "id": "Drop_Cable_1",
+    "selected": "Drop_Cable",
+    "doubleclick": "Drop_Cable",
+    "description": "The description should come from gearList2.json DropCable.description",
+    "key": 54,
+    "cameraPosition": {
+        "x": -3190.4268842471283,
+        "y": 298.33612129093507,
+        "z": -21181.27619766526
+    },
+    "targetPosition": {
+        "x": -3174.061964986449,
+        "y": 295.4230659957995,
+        "z": -21166.637845458088
+    },
+    "screenshot": "Drop-Cable-8-2016-10-07-13-5509.png"
+}, {
+    "title": "Drop Tag",
+    "id": "Drop_Tag_1",
+    "description": "",
+    "selected": "Drop_Tag",
+    "key": "",
+    "doubleclick": "Drop_Tag",
+    "cameraPosition": {
+        "x": -3191.6372760036047,
+        "y": 276.23026480942883,
+        "z": -21163.735622666758
+    },
+    "targetPosition": {
+        "x": -3174.819965535056,
+        "y": 290.6085627271795,
+        "z": -21162.725451149334
+    },
+    "screenshot": "Drop-Tag-18-2016-10-07-13-5509.png"
+}, {
+    "title": "Hardline Cable",
+    "id": "Hardline_Cable_2",
+    "description": "",
+    "selected": "Hardline_Cable_Interface",
+    "key": "",
+    "doubleclick": "Hardline_Cable_Interface",
+    "cameraPosition": {
+        "x": -3165.6115801535384,
+        "y": 296.4885998040707,
+        "z": -21157.30714056518
+    },
+    "targetPosition": {
+        "x": -3174.3398592125554,
+        "y": 294.8748355907525,
+        "z": -21173.012944096463
+    },
+    "screenshot": "Hardline-Cable-22-2016-10-07-13-5509.png"
+}, {
+    "title": "Strand",
+    "id": "Strand_2",
+    "description": "",
+    "selected": "Strand002",
+    "key": "",
+    "doubleclick": "Strand002",
+    "cameraPosition": {
+        "x": -3188.3445057844733,
+        "y": 309.467993212408,
+        "z": -21063.83605802236
+    },
+    "targetPosition": {
+        "x": -3153.0464309939457,
+        "y": 287.9708053244665,
+        "z": -21164.289503777403
+    },
+    "screenshot": "Strand-20-2016-10-07-13-5509.png"
+}, {
+    "title": "Fiberoptic Cable",
+    "id": "Fiberoptic_Cable_1",
+    "description": "",
+    "selected": "Fiber_Optic_Cable",
+    "key": "",
+    "doubleclick": "Fiber_Optic_Cable",
+    "cameraPosition": {
+        "x": -3216.8781371938444,
+        "y": 269.69026400854966,
+        "z": -21198.820149660583
+    },
+    "targetPosition": {
+        "x": -3194.7800016315964,
+        "y": 286.25721635443654,
+        "z": -21118.4320610675
+    },
+    "screenshot": "Fiberoptic-Cable-17-2016-10-07-13-5509.png"
+}, {
+    "title": "In-Span Fiber Slack Storage",
+    "id": "Sno_Shoe_1",
+    "description": "",
+    "selected": "Snowshoe001",
+    "key": "",
+    "doubleclick": "Snowshoe001",
+    "cameraPosition": {
+        "x": -3110.2809625503814,
+        "y": 333.07948383796656,
+        "z": -20975.107023634286
+    },
+    "targetPosition": {
+        "x": -3215.3606473748564,
+        "y": 264.70080168314985,
+        "z": -20952.05181798926
+    },
+    "screenshot": "Sno-Shoe-21-2016-10-07-13-5509.png"
+}, {
+    "title": "In-Span Fiber Slack Storage",
+    "id": "Sno_Shoe_2",
+    "description": "",
+    "selected": "Snowshoe002",
+    "key": "",
+    "doubleclick": "Snowshoe002",
+    "cameraPosition": {
+		"x": -2647.2479062993684,
+		"y": 1053.983028784634,
+		"z": -20817.30559276794
+	},
+	"targetPosition": {
+		"x": -3252.280223030582,
+		"y": 396.905830946173,
+		"z": -20757.71511080624
+	},
+    "screenshot": "Sno-Shoe-23-2016-10-07-13-5509.png"
+}, {
+    "title": "Headend",
+    "id": "Headend_1",
+    "description": "",
+    "key": 48,
+    "selected": "Headend_bldng",
+    "cameraPosition": {
+        "x": -4657,
+        "y": 942.4,
+        "z": -5255.2
+    },
+    "targetPosition": {
+        "x": -2988.4,
+        "y": 288.9,
+        "z": -5689.7
+    },
+    "screenshot": "Headend-12-2016-10-07-13-5509.png"
+}, {
+    "title": "Fiberoptic Cable",
+    "description": "",
+    "id": "Fiber_Optic_Cable001",
+    "selected": "Fiber_Optic_Cable001",
+    "key": "",
+    "doubleclick": "Fiber_Optic_Cable001",
+    "cameraPosition": {
+        "x": -3229.3342430298685,
+        "y": 429.01626097379244,
+        "z": -5676.717271081999
+    },
+    "targetPosition": {
+        "x": -3000.8899511000363,
+        "y": 408.32472382425897,
+        "z": -5736.20369373783
+    },
+    "screenshot": "Headend-Fiber-13-2016-10-07-13-5509.png"
+}, {
+    "title": "Over-the-Air (OTA) Antenna",
+    "id": "OTA_Antenna_1",
+    "description": "",
+    "selected": "antenna",
+    "key": "",
+    "doubleclick": "antenna",
+    "cameraPosition": {
+        "x": -2183.0587088945895,
+        "y": 929.4647249108104,
+        "z": -4705.7977267715105
+    },
+    "targetPosition": {
+        "x": -2182.6249701533657,
+        "y": 929.3380840951788,
+        "z": -4706.264966774745
+    },
+    "screenshot": "Over-the-Air-OTA-Antenna-26-2016-10-07-13-5509.png"
+}, {
+    "title": "TV Receive Only Dish",
+    "description": "",
+    "selected": "mesh_default007",
+    "key": "",
+    "doubleclick": "mesh_default007",
+    "cameraPosition": {
+        "x": -1418.917836745231,
+        "y": 547.5707917146767,
+        "z": -3639.1404357212296
+    },
+    "targetPosition": {
+        "x": -1406.6004214990537,
+        "y": 545.2632092504693,
+        "z": -3648.48624468939
+    },
+    "screenshot": "TV-Receive-Only-Dish-27-2016-10-07-13-5509.png"
+}, {
+    "title": "TV Receive Only Dish",
+    "description": "",
+    "selected": "mesh_default006",
+    "key": "",
+    "doubleclick": "mesh_default006",
+    "cameraPosition": {
+        "x": 821.653503258593,
+        "y": 215.90459640702971,
+        "z": -3828.996102016652
+    },
+    "targetPosition": {
+        "x": 361.8254005998574,
+        "y": 147.4568507676492,
+        "z": -5365.768043026298
+    },
+    "screenshot": "TV-Receive-Only-Dish-32-2016-10-07-13-5509.png"
+}, {
+    "title": "Headend",
+    "id": "Headend_Angle_1",
+    "selected": "Headend_bldng",
+    "description": "",
+    "key": 187,
+    "cameraPosition": {
+        "x": -3960.012567983613,
+        "y": 550.6275003610104,
+        "z": -4231.45989113721
+    },
+    "targetPosition": {
+        "x": -2648.8048364899746,
+        "y": 304.9818102827573,
+        "z": -5226.33557984293
+    },
+    "screenshot": "Headend-Angle-14-2016-10-07-13-5509.png"
+}, {
+    "title": "Headend",
+    "description": "",
+    "selected": "Headend_bldng",
+    "key": "",
+    "doubleclick": "Headend_bldng",
+    "cameraPosition": {
+        "x": -4121.547059361994,
+        "y": 1191.1205281754417,
+        "z": -4877.212293872186
+    },
+    "targetPosition": {
+        "x": -2614.875896428506,
+        "y": 656.5606078543448,
+        "z": -5796.051865490111
+    },
+    "screenshot": "Headend-24-2016-10-07-13-5509.png"
+}]

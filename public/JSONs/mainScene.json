@@ -1,0 +1,19 @@
+{ 
+    "baseScene": {
+        "obj": "baseScene.obj", 
+        "mtl": "baseScene.mtl", 
+        "texturesPath": "texturesBase/"
+    },
+    "clones":[
+        { 
+            "name": "baseSceneobj--Suburb698-extra1",
+            "cloneOf": "baseSceneobj--Suburb698",
+            "position": {"x": -2000, "y": 372, "z": -20000},
+            "rotation": { "x": 0, "y": 45, "z": 0},
+            "scale": { "x": 1, "y": 1, "z": 1},
+            "disabled": true
+        }
+    ],
+    "remove": [],
+    "load": []
+}

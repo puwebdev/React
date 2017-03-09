@@ -1,0 +1,57 @@
+{
+	"Power_Supply" : [
+		{
+			"manufacturer" : "Alpha Technologies",
+			"model" : [
+				{
+					"name" : "XM3 HP",
+					"objectid" : "Box004",
+					"product-src" : "http://www.alpha.com/index.php/outside-plant-power/cableups-power-supplies/item/xm3-hp-series",
+					"model-html" : ""
+				},
+				{
+					"name" : "XM2",
+					"product-src" : "http://www.alpha.com/index.php/outside-plant-power/cableups-power-supplies/item/xm2-series?category_id=105",
+					"model-html" : ""
+				}
+			]
+		},{
+			"manufacturer" : "Multilink",
+			"model" : [
+				{
+					"name" : "EB1L",
+					"product-src" : "http://www.gomultilink.com/categories/catv-ups-backup-power#?category=2&category=33",
+					"model-html" : ""
+				},
+				{
+					"name" : "EB1S",
+					"product-src" : "http://www.gomultilink.com/categories/catv-ups-backup-power#?category=2&category=34",
+					"model-html" : ""
+				}
+			]
+		}
+	], 
+	"Power_Supply_Cabinet" : [
+		{
+			"manufacturer" : "Alpha Technologies",
+			"model" : [
+				{
+					"name" : "PWE Enclosure",
+					"objectid" : "Cabinet03",
+					"product-src" : "http://www.alpha.com/download/pdf/AlphaPoleMount%2010_A07.pdf",
+					"model-html" : ""
+				}
+			]
+		},{
+			"manufacturer" : "Multilink",
+			"model" : [
+				{
+					"name" : "psc-3",
+					"product-src" : "http://www.gomultilink.com/categories/catv-ups-backup-power#?category=2&category=36&category=244",
+					"model-html" : ""
+				}
+			]
+		}
+	]
+}
+

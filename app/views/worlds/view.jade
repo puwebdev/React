@@ -1,0 +1,112 @@
+doctype html
+html.app(lang='en')
+
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(http-equiv="Content-Language", content="en-us")
+
+        title= title
+        meta(http-equiv="Content-type", content="text/html;charset=UTF-8")
+        meta(name="description", content=pkg.description)
+        meta(name="viewport", content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
+        //link(href="/favicon.png", rel="shortcut icon", type="image/x-icon")
+
+        if NODE_ENV == 'production'
+            link( rel="stylesheet" href="/system/css/styles.min.css" type="text/css")
+            link( rel="stylesheet" href="/resources/css/app.min.css" type="text/css")
+            link( rel="stylesheet" href="/resources/css/react-bootstrap-table.min.css" type="text/css")
+        else 
+            link( rel="stylesheet" href="/system/css/styles.css" type="text/css")
+            link( rel="stylesheet" href="/resources/css/bootstrap.css" type="text/css")
+            link( rel="stylesheet" href="/resources/css/app.css" type="text/css")
+            link( rel="stylesheet" href="/resources/css/react-bootstrap-table.min.css" type="text/css")
+
+        script(src='/system/lib/js/modernizr/modernizr-custom.js')            
+
+    body
+
+        #app-3d.app3d-main-panel(data-gpu='It seems that your graphic card does not support WebGL. Without it we cannot show you the 3D Vessel Content.<br />Try using another browser.', data-webgl='Your browser does not support WebGL. Without it we cannot show you the 3D Vessel Content.<br />Only for modern browsers & IE11+')
+            #app-3d-loading-div.app3d-loading-div
+                #app-3d-loading-div-text.app3d-loading-div-text Please wait...
+                img.app3d-loading-logo-img(src='/system/images/opxl.png', alt='loading')
+
+        #win-info.win-info
+            span#win-info-close.win-info-close
+            #win-info-container.win-info-container
+        #viewer-nav.viewer-nav
+            span#viewer-nav-toggler.viewer-nav-toggler(title='Views')
+                span
+                span
+                span
+
+            ul.nav.nav-tabs.viewer-tabs(role='tablist')
+                li.active(role='presentation')
+                    a(href='#guide', aria-controls='guide', role='tab', data-toggle='tab' data-id='guide') Guide
+                li(role='presentation')
+                    a(href='#explore', aria-controls='explore', role='tab', data-toggle='tab' data-id='explore') Explore
+
+            .tab-content
+                #guide.tab-pane.active(role='tabpanel')
+                    .input-group
+                        input.info-window-name.form-control(type='text', aria-label='...')
+                        .input-group-btn
+                            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                | Select
+                                span.caret
+                            ul.dropdown-menu.dropdown-menu-right.infowindow-highlevels
+
+                    ul#top-level-infowindows-collection.nav.info-windows
+                #explore.tab-pane(role='tabpanel')
+                    ul#viewer-nav-thumbs.viewer-nav-thumbs
+
+
+
+        if (req.isAuthenticated() && req.user.roleAdmin() >= 8)
+            #mgmt-layv.mgmt-container-layv
+                #mgmt.mgmt-container
+            #markerui-holder.markerui-holder
+
+        #image-modal-layer.image-modal-layer
+            #image-container.image-container
+                span.close &#10006;
+                img#img-file
+
+        #marker-feedback-layv.marker-feedback-layv
+            #marker-feedback-container.marker-feedback-container
+                #marker-feedback-text.marker-feedback-text
+                button#marker-feedback-dismiss.marker-feedback-dismiss
+
+        script.
+            var config = !{jsonConfig};
+        
+        //[if IE]
+        script(src='/system/lib/js/polyfills/browser-polyfill.min.js')
+        script(src='/system/lib/js/polyfills/es6-promise.js')
+        //
+        if NODE_ENV == 'production'
+            script(src='/system/build/min/app3d.min.js')
+            script(src='/system/lib/js/jQuery/jQuery.min.js')
+            script(src='/system/build/extras.js')
+            script(src='/resources/js/bootstrap.js')
+            if (req.isAuthenticated() && req.user.roleAdmin() >= 8)
+                script(src='/system/build/min/mgmt-bundle.min.js')
+         else
+            script(src='/system/lib/js/underscore/underscore-min.js')
+            script(src='/system/lib/js/axios/axios.js')
+            script(src='/system/lib/js/greensock/minified/TweenLite.min.js')
+            script(src='/system/lib/js/greensock/minified/plugins/ScrollToPlugin.min.js')
+            script(src='/system/lib/js/three/three.min.js')
+            script(src='/system/lib/js/three/Detector.js')
+            script(src='/system/lib/js/three/controls/OrbitControls.js')
+            script(src='/system/lib/js/three/loaders/MTLLoader.js')
+            script(src='/system/lib/js/three/loaders/OBJLoader.js')
+            script(src='/system/build/app3d.js')
+            script(src='/system/lib/js/jQuery/jQuery.min.js')
+            script(src='/system/build/extras.js')
+            script(src='/resources/js/bootstrap.js')
+            if (req.isAuthenticated() && req.user.roleAdmin() >= 8)
+                script(src='/system/build/mgmt-vendors.js')
+                script(src='/system/build/mgmt.js')
+            

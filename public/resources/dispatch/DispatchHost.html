@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../js/scorm/utils.js"></script>
+    	<script type="text/javascript">
+            var dispatchApiPath = "";
+            function loadFrames() {
+                    var hash = document.location.hash;
+                    dispatchApiPath = hash.substr(1,hash.length); //.replace('dispatch.html','dispatchapi.html');
+                    document.getElementById('pipeFrame').setAttribute('src', dispatchApiPath);
+                    var StartPath = GetQueryStringValue("URL", document.location.search);
+                    document.getElementById('contentRelay').setAttribute('src', StartPath);
+            }
+
+    	</script>
+    
+    </head>
+    <frameset onload="loadFrames()" rows="0,*" frameborder='0' framespacing='0' border='0'>
+    	<!-- We set the src to blank.html to avoid security warnings in IE6 / IE7 when launching in HTTPS -->
+        <frame id='pipeFrame' name='pipeFrame' src="blank.html" frameborder='0' framespacing='0' border='0' />
+        <frame id='contentRelay' name='contentRelay' src="blank.html" frameborder='0' framespacing='0' border='0' />
+    </frameset>
+</html>

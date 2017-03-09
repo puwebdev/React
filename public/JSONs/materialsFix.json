@@ -1,0 +1,63 @@
+{   "clones" : [
+        {
+            "objectName": "Connector_Wrap",
+            "newMaterialName": "baseSceneobj--connector_wrap_black",
+            "overwriteIfExists": false
+        },
+        {
+            "objectName": "Connector_Wrap001",
+            "newMaterialName": "baseSceneobj--connector_wrap_black",
+            "overwriteIfExists": false
+        },
+        {
+            "objectName": "Connector_Wrap002",
+            "newMaterialName": "baseSceneobj--connector_wrap_black",
+            "overwriteIfExists": false
+        },
+        {
+            "objectName": "Connector_Wrap003",
+            "newMaterialName": "baseSceneobj--connector_wrap_black",
+            "overwriteIfExists": false
+        },
+        {
+            "objectName": "Connector_Wrap004",
+            "newMaterialName": "baseSceneobj--connector_wrap_black",
+            "overwriteIfExists": false
+        }
+    ],
+    "fixes": 
+    [
+        {
+            "materialName": "baseSceneobj--batterie_black",
+            "color": { "r": 0.01, "g": 0.01, "b": 0.01 },
+            "bumpScale": 0.03
+        },
+        {
+            "materialName": "baseSceneobj--rubber_black",
+            "color": { "r": 0.01, "g": 0.01, "b": 0.01 },
+            "bumpScale": 0.02
+        },
+        {
+            "materialName": "baseSceneobj--rubber_red",
+            "bumpScale": 0.04,
+            "color": { "r": 0.4, "g": 0.001, "b": 0.001 }
+        },
+        {
+            "materialName": "baseSceneobj--white_cable",
+            "bumpScale": 0.03
+        },
+        {
+            "materialName": "baseSceneobj--placa_oscura",
+            "color": { "r": 0.01, "g": 0.01, "b": 0.01 }
+        },
+        {
+            "materialName": "baseSceneobj--hp_color1",
+            "color": { "r": 0.04, "g": 0.04, "b": 0.04 }
+        },
+        {
+            "materialName": "baseSceneobj--connector_wrap_black",
+            "color": { "r": 0.02, "g": 0.02, "b": 0.02 },
+            "shininess": 100
+        }          
+    ]
+}

@@ -1,0 +1,56 @@
+[{
+    "type": "hemisphereLight",
+	"skyColor": "#83b6ca",
+    "groundColor": "#687049",
+	"intensity": 5
+}, {
+    "type": "ambienLight",
+	"color": "#ffeeaa",
+	"intensity": 15
+}, {
+	"type": "pointLight",
+	"color": "#ffee88",
+	"position": {
+		"x": 500,
+		"y": 500,
+		"z": -4750
+	},
+	"intensity": 20,
+	"distance": 1000,
+	"decay": 0.1,
+	"showPoint": false,
+    "disabled": true
+}, {
+    "type": "spotLight",
+	"color": "#88ceff",
+	"position": {
+		"x": -3300,
+		"y": 400,
+		"z": -21100
+	},
+	"intensity": 100,
+	"distance": 1500,
+	"decay": 0.3,
+    "angle": 3.14,
+    "penumbra": 1.7,
+    "showPoint": false
+}, {
+    "type": "directionalLight",
+	"color": "#bef3ff",
+	"position": {
+		"x": -2000,
+		"y": 4000,
+		"z": 0
+	},
+    "intensity": 90
+	
+}, {
+    "type": "directionalLight",
+	"color": "#bef3ff",
+	"position": {
+		"x": -2000,
+		"y": -2000,
+		"z": 0
+	},
+    "intensity": 20
+}]

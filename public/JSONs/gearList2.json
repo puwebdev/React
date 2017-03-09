@@ -1,0 +1,802 @@
+{
+   "_180_Degree_Adapter":{
+      "type":"Physical Plant",
+      "id":"_180_Degree_Adapter",
+      "title":"180 Degree Adapter",
+      "thumbnail_src":"http://www.multicominc.com/wp-content/uploads/Multicom_M-180-300x300.jpg",
+      "description":"Provides a right-angle connector for hardline cable.",
+      "html":" <span>The 180 Degree Adapter helps to connect the hardline to devices when working in tight spaces. </span> "
+   },
+   "_180_Degree_Socket_Adapter":{
+      "type":"Physical Plant",
+      "id":"_180_Degree_Socket_Adapter",
+      "title":"180 Degree Socket Adapter",
+      "thumbnail_src":"http://www.multicominc.com/wp-content/uploads/Gilbert-Gl-180-SC.png",
+      "description":"Connects hardline cable to devices when working in tight spaces.",
+      "html":" <span>Available in different lengths.</span> "
+   },
+   "Active_Combiner":{
+      "type":"Physical Plant",
+      "id":"Active_Combiner",
+      "title":"Active Combiner",
+      "thumbnail_src":"http://cableworld.hu/media/com_hikashop/upload/active_combiner_b.png",
+      "description":"Combines the channel output signals of the video and audio devices and adds program-specific information.",
+      "html":""
+   },
+   "Aerial_Drop_Clamp":{
+      "type":"Physical Plant",
+      "id":"Aerial_Drop_Clamp",
+      "title":"Aerial Drop Clamp",
+      "thumbnail_src":"http://idclineproducts.com/uploads/3/5/9/6/3596926/1993932_orig.jpg",
+      "description":"Secures the drop to the span in a way that allows for expansion.",
+      "html":""
+   },
+   "Amplifier":{
+      "type":"Physical Plant",
+      "id":"Amplifier",
+      "title":"Amplifier",
+      "thumbnail_src":"http://www.tvcinc.com/products/FM901e.jpg",
+      "description":"Rebuilds the original RF signal from the node, correcting RF signal degradation caused by transport through the hardline cable. Combines and amplifies carriers on the return and transmits them to the node.",
+      "html":" <span>The goal of amplifiers is to maintain unity gain across the coaxial plant. Amplifiers are found on the express cable (trunk); bridge the RF onto multiple legs (bridger and mini-bridger), and extend the signal to end-of-line (EOL) customers (line extenders). Learn more... </span> <ul class=\"linkList\">    <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=AmplifierSignalProcessing.html\">How does an amp work?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_AmplifierTestPoints.html\">Try it! Relate design to operation.</a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dfcco.com/trunk-and-bridger-amps-1/\">Trunk and Bridger Amps from DFC </a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dfcco.com/line-extenders-1/\">Line Extenders from DFC</a></li> </ul>  "
+   },
+   "Amplifier_Module":{
+      "type":"Physical Plant",
+      "id":"Amplifier_Module",
+      "title":"Amplifier Module",
+      "thumbnail_src":"http://thomasonbbs.com/store/pc/catalog/fnt95dj_1917_detail.jpg",
+      "description":"Houses the active electronics inside the amplifier case. ",
+      "html":" <span>The amplifier module is easily replaced in the event of damage or failure</span> "
+   },
+   "Barrel_Connector":{
+      "type":"Physical Plant",
+      "id":"Barrel_Connector",
+      "title":"Barrel Connector",
+      "thumbnail_src":"http://www.prosatellitesupply.com/images/connector-barrel-scte_big.jpg",
+      "description":"Provides the physical interface for the short cable connecting to the DVR, MOCA Node, DTA, or Cable Modem.",
+      "html":" <span>The barrel connector is a splice, built with a brass insert to connect the center conductors together and a dielectric. </span> "
+   },
+   "Bi-Directional_Amplifier":{
+      "type":"Physical Plant",
+      "id":"Bi-Directional_Amplifier",
+      "title":"Bi-Directional Amplifier",
+      "thumbnail_src":"http://ppc-online.com/docs/MKTimages/images/EVO1-5-UU_2.png",
+      "description":"Amplifies the downstream RF energy to meet specified signal levels in order to operate the CPE.",
+      "html":" <span>Amplifies the downstream and allows the upstream to pass. The amplifier is installed inside and powered using an AC/DC power block. Power runs over the coax inside wire. </span> "
+   },
+   "Bonding_Block":{
+      "type":"Physical Plant",
+      "id":"Bonding_Block",
+      "title":"Bonding Block",
+      "thumbnail_src":"http://www.deepsurplus.com/core/media/media.nl?id=25918&c=ACCT89285&h=c3b320147e4be6fa4ddd",
+      "description":"Provides the interface between the drop and the customer's inside wire and bonds to the building grounding system to protect against shock and damage from electrical surges.",
+      "html":" <span>Bonding blocks are sometimes still called \"ground blocks.\" The block acts as a test point and protects the OSP and the customer's equipment. </span> "
+   },
+   "Bonding_Clamp":{
+      "type":"Physical Plant",
+      "id":"Bonding_Clamp",
+      "title":"Bonding Clamp",
+      "thumbnail_src":"http://www.linemen-tools.com/v/vspfiles/photos/H-J8300-ALL2125K1-2.jpg",
+      "description":"Clamps the building wire to the <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span>.",
+      "html":" <span>The bonding clamp is designed to minimize electrolytic corrosion caused by bonding copper to steel. It is essential for electrical safety. </span> "
+   },
+   "Bonding_Wire":{
+      "type":"Physical Plant",
+      "id":"Bonding_Wire",
+      "title":"Bonding Wire",
+      "thumbnail_src":"http://ecx.images-amazon.com/images/I/61t-XAvl8tL._SX522_.jpg",
+      "description":"Carries excess voltage to the building's ground system. Bonding wire is designed to carry voltage from surges like lightning.",
+      "html":" <span>Bonding to ground is a critical element of all subscriber installations. </span> "
+   },
+   "Building_Wire":{
+      "type":"Physical Plant",
+      "id":"Building_Wire",
+      "title":"Building Wire",
+      "thumbnail_src":"https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTVIKMMsvgmHsU6GlgfsYx_VFkntO2JnbmiSTBxKemUDP9kPcW-G9MaFJ31MiK9c_OiCYsu0w&usqp=CAE",
+      "description":"Bonds the <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span> to a ground rod to protect the devices and technicians from electrical shock.",
+      "html":" <span>Building wire is also called riser bond and is available in large gauge 4AWG and 8AWG. Building wire is clamped to the strand and run through the riser to a ground rod at the base of the pole.</span> "
+   },
+   "Cable_Modem":{
+      "type":"Physical Plant",
+      "id":"Cable_Modem",
+      "title":"Cable Modem",
+      "thumbnail_src":"https://tse3.mm.bing.net/th?id=OIP.M97df1deb5d8893a4f218e75a34c06e56H0&pid=15.1",
+      "description":"Provides high-speed Internet services using DOCSIS.",
+      "html":" <span>Learn more about cable modems and gateways (includes telephone jacks)</span> <ul class=\"linkList\">    <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.surfboard.com/quick-start-guides/\">Arris Cable Modem and Gateway Quick-Start guides</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.computerworld.com/article/2488872/emerging-technology-explained-the-abcs-of-the-internet-of-things.html\">What is the IoT?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.brickhousesecurity.com/category/video+surveillance+security+cameras/how+ip+cameras+work.do\">How do Internet cameras work?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.androidauthority.com/wifi-standards-explained-802-11b-g-n-ac-ad-ah-af-666245/\">What is WiFi?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.repeaterstore.com/pages/wifi-booster-repeater-extender-differences\">What are WiFi boosters, repeaters, and extenders?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.wi-fi.org/discover-wi-fi\">What's new in WiFi?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.pcmag.com/article2/0,2817,2498672,00.asp\">How can I troubleshoot my Internet connection?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.timewarnercable.com/en/support/faqs/faqs-internet/homewifi/how-do-i-change-my-wifi-settings1.html\">How can I change the settings on the cable modem?</a></li>  </ul> "
+   },
+   "CATV_Wall_Outlet":{
+      "type":"Physical Plant",
+      "id":"CATV_Wall_Outlet",
+      "title":"CATV Wall Outlet",
+      "thumbnail_src":"http://www.rona.ca/images/0525416_L.jpg",
+      "description":"Demarcs the inside wire at the wall.",
+      "html":" <span>Also called a TV Wall Plate, the faceplate includes a barrel connector, threaded at both ends. </span> "
+   },
+   "CCAP_CMTS":{
+      "type":"Physical Plant",
+      "id":"CCAP_CMTS",
+      "title":"CCAP/CMTS",
+      "thumbnail_src":"http://ahecta.org/wp-content/uploads/2013/02/SLGBTS-Headend.jpg",
+      "description":"The Converged Cable Access Platform (CCAP)/Cable Modem Termination System (CMTS) control the modulation and demodulation of digital RF carriers.",
+      "html":" <span>Learn more about CCAP/CMTS...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_Identify_Major_Optical_Components_OSP.html\">Discover the role of the headend and hub</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.scte.org/ipep\">SCTE's IP Engineering Professional course</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.cisco.com/c/en/us/solutions/service-provider/converged-cable-access-platform-ccap-solution/index.html\">CCAP and the headend</a></li>  </ul> "
+   },
+   "Cherry_Picker_MUX":{
+      "type":"Physical Plant",
+      "id":"Cherry_Picker_MUX",
+      "title":"Cherry Picker/MUX",
+      "thumbnail_src":"http://thomasonbbs.com/store/pc/catalog/dm6400_gige_detail.jpg",
+      "description":"Assembles and interleaves the MPEG2 transport streams into each of the digital carriers.",
+      "html":" <span>The device is commonly called a \"Cherry Picker\" because it picks and organizes the program streams into the channel lineup. </span> "
+   },
+   "Compression_F-Connector":{
+      "type":"Physical Plant",
+      "id":"Compression_F-Connector",
+      "title":"Compression F-Connector",
+      "thumbnail_src":"http://www.ppc-online.com/docs/MKTimages/images/AQUA-FAMILY.jpg",
+      "description":"Connects <span class=\"gloss\" data-viewid=\"Drop_Cable_1\">drop cable</span> and inside wire to bonding blocks, splitters, and equipment.",
+      "html":" <span>Compression connectors used outside often have rubber grommets to provide a watertight seal. The compression fitting is designed to secure the cable's sheath without deforming the dielectric foam insulation.</span> "
+   },
+   "DC_Power_Inserter":{
+      "type":"Physical Plant",
+      "id":"DC_Power_Inserter",
+      "title":"DC Power Inserter",
+      "thumbnail_src":"http://cdn3.volusion.com/m5ytq.j6phj/v/vspfiles/photos/PCTMPI1G-2.jpg?1412780824",
+      "description":"Injects DC to power a bi-directional amplifier.",
+      "html":" <span>Connects to an AC/DC power block.</span> "
+   },
+   "Demodulator":{
+      "type":"Physical Plant",
+      "id":"Demodulator",
+      "title":"Demodulator",
+      "thumbnail_src":"http://www.dveo.com/images/products/T-Ramp-Large.jpg",
+      "description":"Converts video and audio RF signals to baseband.",
+      "html":" <span>The demodulator's baseband output can be SD or HD. The output signal is inserted into the multiplexer through the router.</span> "
+   },
+   "Digital_Terminal_Adapter":{
+      "type":"Physical Plant",
+      "id":"Digital_Terminal_Adapter",
+      "title":"Digital Terminal Adapter",
+      "thumbnail_src":"http://www.goamt.com/wp-content/uploads/2015/08/HD-uDTA-M_REAR_MOTOROLA.jpg",
+      "description":"The Digital Terminal Adapter (DTA) decodes the digital programming so it can be displayed on a TV.",
+      "html":" <span>With a coaxial input, the DTA processes the digital data to output HDMI (HD models), Composite, or IF Baseband (Channel 3/4).</span> "
+   },
+   "Digital_Video_Recorder":{
+      "type":"Physical Plant",
+      "id":"Digital_Video_Recorder",
+      "title":"Digital Video Recorder",
+      "thumbnail_src":"http://media2.comcast.net/anon.comcastonline2/support/help/faqs/x1/equipment/PaceXG1_200px.png",
+      "description":"The Digital Video Recorder (DVR)Decodes the digital audio and video for display on a TV. Also records and stores the programming for playback at a later time.",
+      "html":" <span>A DVR, also called a Digital Video Recorder, receives a channel guide which is loaded on the box. It also transmits status messages to a set top box monitoring server. </span> "
+   },
+   "Fiber_Demarcation_Enclosure":{
+      "type":"Physical Plant",
+      "id":"Fiber_Demarcation_Enclosure",
+      "title":"Fiber Demarcation Enclosure",
+      "thumbnail_src":"https://lh3.ggpht.com/clFhYZwGwV7Ie0IYjK_JizyCAvRnPSs1JYsZqQce3d8GibE4GMFF8jUtGx3TzJcWz0djIl2P=w200",
+      "description":"Houses the physical interface between the fiber drop and the customer's inside wire.",
+      "html":" <span>Also called a network interface unit (NIU), network interface device (NID), and house box, the enclosure protects the bonding block, connectors, and /or splitters from the elements.</span> "
+   },
+   "Drop_Cable":{
+      "type":"Physical Plant",
+      "id":"Drop_Cable",
+      "title":"Drop Cable",
+      "thumbnail_src":"http://www.satpro.tv/images/products/detail/rg11barialb.1.jpg",
+      "description":"Transports the signals for voice, video, and data between the tap and the demarc. In RF demarcs the drop cable is coaxial (RG6 or RG11) and runs from the <span class=\"gloss\" data-viewid=\"Tap_1\" data-highlight=\"Tap\">tap</span> to the demarc. In FTTH demarcs, the drop cable is low count fiber and a short RG6 drop is used inside the demarc between the ONU and the inside wire. Drop cables are identified by <span class=\"gloss\" data-viewid=\"Drop_Tag_1\" data-highlight=\"Drop_Tag\">drop tags</span>.",
+      "html":" <span>Learn about drop cables...</span> <ul class=\"linkList\">    <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.fs.com/c/ftth-fiber-optic-cables_939\">Fiberoptic drop cables from FS </a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.commscope.com/catalog/broadband/product.aspx?id=15\">Coaxial drop cable from Commscope</a></li> </ul> "
+   },
+   "Drop_Tag":{
+      "type":"Physical Plant",
+      "id":"Drop_Tag",
+      "title":"Drop Tag",
+      "thumbnail_src":"http://www.sunsetenterprises.com/thumb.php?nocache=0&size=&quality=&sizex=220&sizey=220&file=invpics/UMS-TAGS.jpg",
+      "description":"Identifies the assigned subscriber and service status [active/disconnected/filtered] for the tagged <span class=\"gloss\" data-viewid=\"Drop_Cable_1\" data-highlight=\"Drop_Cable\">drop cable</span>.",
+      "html":" <span>Drop tags come in different colors to identify the type of drop and the customer it serves.</span> "
+   },
+   "E_Span_Clamp":{
+      "type":"Physical Plant",
+      "id":"E_Span_Clamp",
+      "title":"E Span Clamp",
+      "thumbnail_src":"http://www.alliedboltinc.com/productimages/E%20Span%20Clamp.jpg",
+      "description":"Secures the drop along the span.",
+      "html":" <span>Also referred to as a mid-span clamp, the E Span Clamp is one of a number of clamps used to secure the <span class=\"gloss\" data-viewid=\"Drop_Cable_1\">drop cable</span> to the <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span> and position it away from driveways and property lines. </span> "
+   },
+   "Emergency_Alert_System_EAS_Antenna":{
+      "type":"Physical Plant",
+      "id":"Emergency_Alert_System_EAS_Antenna",
+      "title":"Emergency Alert System (EAS) Antenna",
+      "thumbnail_src":"http://www.tonercable.com/images/products/xl/j56-162_eas_antenna.jpg",
+      "description":"Receives the EAS  public safety broadcasts that activate the EAS system in the <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span>.",
+      "html":" <span>The EAS antenna is mounted outdoors.</span> "
+   },
+   "Emergency_Alert_System_EAS_Controller":{
+      "type":"Physical Plant",
+      "id":"Emergency_Alert_System_EAS_Controller",
+      "title":"Emergency Alert System (EAS) Controller",
+      "thumbnail_src":"http://www.tonercable.com/images/products/xl/4Xj3M.jpg",
+      "description":"Activates upon receipt of an EAS broadcast and interrupts all transport streams and inserts the audio and text message.",
+      "html":" <span>The EAS antenna is mounted outdoors.</span> "
+   },
+   "Equalizer":{
+      "type":"Physical Plant",
+      "id":"Equalizer",
+      "title":"Equalizer",
+      "thumbnail_src":"http://www.broadbandinternational.com/images/products/thumbs/thumb_576.jpg",
+      "description":"Adjusts the gain in the lower, middle, and upper frequency bands in amplifiers.",
+      "html":" <span>Equalizer modules vary in form factor depending on the vendor and model of the amplifier.</span> "
+   },
+   "FTTH_Demarc":{
+      "type":"Physical Plant",
+      "id":"FTTH_Demarc",
+      "title":"FTTH Demarc",
+      "thumbnail_src":"https://lh3.ggpht.com/clFhYZwGwV7Ie0IYjK_JizyCAvRnPSs1JYsZqQce3d8GibE4GMFF8jUtGx3TzJcWz0djIl2P=w200",
+      "description":"Houses the components used to interface the fiber drop to the customer's inside wire.",
+      "html":" <span>The fiber-to-the-home (FTTH) demarc is a weather-resistant enclosure that houses the components used to connect the OSP to the customer’s inside wire. The drop is fiberoptic cable. In an RFoG Demarc, a mini-node optical network unit (ONU) converts light to RF (downstream) and RF to light (upstream).</span> <ul class=\"linkList\">    <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.alpha.com/index.php/fiber-power/fiber-power-products/item/integrated-fiber-enclosure\">Check out this RFoG enclosure from Alpha</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/Radio_frequency_over_glass\">RFoG explained</a></li> </ul> "
+   },
+   "Fiber_Mux_Demux":{
+      "type":"Physical Plant",
+      "id":"Fiber_Mux_Demux",
+      "title":"Fiber Mux/Demux",
+      "thumbnail_src":"http://www.catvopticaltransmitter.com/photo/pl9274521-metro_wdm_fiber_optic_mux_demux_cwdm_16ch_multiplexer_demultiplexer.jpg",
+      "description":"Combines (Mux) multiple optical signals onto a single fiber. Breaks out (Demux) multiple optical signals from a single fiber.",
+      "html":" <span>Find out more about Mux/Demux units...</span> <ul class=\"linkList\">    <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.commscope.com/catalog/brand_bb_bos/2147485719/product_details.aspx?id=46302\">Commscope Dual LGX Module Wavelength Division Multiplexer </a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://youtu.be/vHjVvLMOWsA\">Commscope FTTX Brightpath Solutions</a></li>  </ul> "
+   },
+   "Fiber_Patch_Panel":{
+      "type":"Physical Plant",
+      "id":"Fiber_Patch_Panel",
+      "title":"Fiber Patch Panel",
+      "thumbnail_src":"http://img03.olx.in/images_olxin/43137033_2_1000x700_48-port-fiber-optic-patch-panel-upload-photos_rev006.jpg",
+      "description":"Cross connects optical devices such as ONUs, ONTs, and nodes to the correct fiber or wavelength associated with that device.",
+      "html":""
+   },
+   "Fiber_Pigtail":{
+      "type":"Physical Plant",
+      "id":"Fiber_Pigtail",
+      "title":"Fiber Pigtail",
+      "thumbnail_src":"http://www.fiberopticpatch-cord.com/photo/pl3161625-optical_access_network_sc_apc_simplex_fiber_pigtail_with_sm_yellow_fiber_optic_cable.jpg",
+      "description":"Provides a connector to insert into the optical network unit (ONU). The pigtail is spliced onto the fiberoptic drop cable.",
+      "html":" <span>Unterminated fiber needs a pigtail spliced onto it. Learn more... </span> <ul class=\"linkList\">    <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.belden.com/blog/datacenters/UPC-or-APC.cfm\">Types of connectors - APC vs. UPC</a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dipolnet.com/single-mode_pigtail_ultimode_pg-52s_1_x_sc-apc_9-125_L3552.htm\">A great view of an SC-APC pigtail from European supplier Dipol </a></li> </ul>  "
+   },
+   "Fiber_Splice":{
+      "type":"Physical Plant",
+      "id":"Fiber_Splice",
+      "title":"Fiber Splice",
+      "thumbnail_src":"https://www.aflglobal.com/getattachment/242b8305-de14-4c1c-8952-f5f71eb8d11c/SpliceConnect-Mechanical-Splice.aspx;;",
+      "description":"Secures the interface (fusion or mechanical) between the fiber drop and pigtail.",
+      "html":""
+   },
+   "Fiber_Splice_Tray":{
+      "type":"Physical Plant",
+      "id":"Fiber_Splice_Tray",
+      "title":"Fiber Splice Tray",
+      "thumbnail_src":"http://m.eet.com/media/1163095/137507-10f3_fig4.gif",
+      "description":"Houses and secures the fusion splices between the feeder and the fiberoptic patch cords.",
+      "html":""
+   },
+   "Fiber_Wraparound_Marker":{
+      "type":"Physical Plant",
+      "id":"Fiber_Wraparound_Marker",
+      "title":"Fiber Wraparound Marker",
+      "thumbnail_src":"http://www.fnttools.com/store/pc/catalog/wl-0094f_1481_detail.jpg",
+      "description":"Identifies the <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span> among other similar-looking cables",
+      "html":" <span>Available in orange to wrap around fiberoptic cables in 4\" and 8\" lengths. May be labelled or plain. </span> "
+   },
+   "Fiberoptic_Cabinet":{
+      "type":"Physical Plant",
+      "id":"Fiberoptic_Cabinet",
+      "title":"Fiberoptic Cabinet",
+      "thumbnail_src":"http://i00.i.aliimg.com/photo/v0/1476056630/ftth_fiber_optic_cable_distribution_custom_cabinet.jpg",
+      "description":"Houses fiber termination equipment in a secure cabinet.",
+      "html":" <span>Learn more about fiberoptic communications...</span> <ul class=\"linkList\"> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.clearfieldconnection.com/products/cabinets.html\">Clearfield Cabinets</a></li> </ul> "
+   },
+   "Fiberoptic_Cable":{
+      "type":"Physical Plant",
+      "id":"Fiberoptic_Cable",
+      "title":"Fiberoptic Cable",
+      "thumbnail_src":"http://www.merrymesh.com/assets/images/services/fiber-optic-cable.jpg",
+      "description":"Carries video, voice, and data traffic as encoded pulses of infrared laser light between the <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span>, hubs, <span class=\"gloss\" data-viewid=\"Node_1\" data-highlight=\"Node\">nodes</span>, optical line terminals (OLT), and other fiberoptic equipment.",
+      "html":" <span>Learn more about fiberoptics...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/SCTE/FTTx-99_Explainer/index_scorm.html\">SCTE/ISBE FTTx 99 Explainer</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_Node_Function.html\">Discover how we use fiber in the OSP</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.pace.com/universal/networks/residential-solutions/rfog/\">RF over Glass</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.cisco.com/c/en/us/support/docs/optical/synchronous-digital-hierarchy-sdh/51834-cleanfiber2.html\">Inspecting and cleaning fiber</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.commscope.com/Product-Catalog/Broadband/Product/Cables/Fiber/\">Commscope Fiber Catalog</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.belden.com/blog/datacenters/UPC-or-APC.cfm\">SCUPC vs. SCAPC Connectors</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.youtube.com/embed/yVrzW83fZhI\">How do we splice fiberoptic cable?</a></li> \t</ul> "
+   },
+   "Fuse":{
+      "type":"Physical Plant",
+      "id":"Fuse",
+      "title":"Fuse",
+      "thumbnail_src":"http://www.broadbandinternational.com/images/products/24.jpg",
+      "description":"Protects amplifiers from damage due to an electrical fault.",
+      "html":" <span>Fuses are available in different form factors depending on the vendor and model of the amplifier.</span> "
+   },
+   "Game_Console":{
+      "type":"Physical Plant",
+      "id":"Game_Console",
+      "title":"Game Console",
+      "thumbnail_src":"http://blogs-images.forbes.com/erikkain/files/2015/03/261592-xbox-one-vs-ps4.jpg",
+      "description":"Delivers interactive gaming to the customer.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.xbox.com/en-US/xbox-one/experience?xr=shellnav\">What is the XBox?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.playstation.com/en-us/explore/playstationtv/\">What is the PlayStation?</a></li> </ul> "
+   },
+   "Hardline_Cable":{
+      "type":"Physical Plant",
+      "id":"Hardline_Cable",
+      "title":"Hardline Cable",
+      "thumbnail_src":"http://i00.i.aliimg.com/photo/v0/475930312/CATV_Hardline_trunk_PIII500_JCA_PIII_rg500.jpg",
+      "description":"Provides the backbone of the coaxial distribution system to transport (RF) signals and AC voltage among  <span class=\"gloss\" data-viewid=\"Powered_Node_1\" data-highlight=\"Node\">nodes</span>, amplifiers, <span class=\"gloss\" data-viewid=\"Tap_1\" data-highlight=\"Tap\">taps</span>, and <span class=\"gloss\" data-viewid=\"Power_Supply_1\" data-highlight=\"Power Supply\">standby power supplies</span>.",
+      "html":" <span>Learn more...</span> <!-- BEGIN DETAIL SECTION --> <div class=\"thumbnailDetail\"> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/D31_Overview_99_Primer/index_scorm.html\">DOCSIS 3.1 Overview 99 Primer</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_OSP_Topology.html\">What is the topology of hardline cable?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_OSP_Topology.html\">Try it! Identify Hardline Topologies</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_OSPCableConstruction.html\">What are the components of a hardline cable?</a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.commscope.com/catalog/broadband/product.aspx?id=16\">Commscope Hardline Cable</a></li> </ul> </div> <!-- END DETAIL SECTION --> "
+   },
+   "Hardline_Connector":{
+      "type":"Physical Plant",
+      "id":"Hardline_Connector",
+      "title":"Hardline Connector",
+      "thumbnail_src":"http://www.ppc-online.com/docs/MKTimages/images/2pc-family_2.png",
+      "description":"Provides a secure, watertight connection between a hardline cable and nodes, amplifiers, and taps.",
+      "html":" <span>Available in 2- and 3-piece connectors; installed and tightened down with a seizure screw inside the housing</span> "
+   },
+   "Hardline_Splitter":{
+      "type":"Physical Plant",
+      "id":"Hardline_Splitter",
+      "title":"Hardline Splitter",
+      "thumbnail_src":"http://www.multicominc.com/wp-content/uploads/Multicom_MSSA-300x300.jpg",
+      "description":"Splits the signal on the hardline cable.",
+      "html":" <span>The hardline splitter acts as both a splitter for the downstream RF carriers and combiner for the upstream RF carriers. </span> "
+   },
+   "Headend" :  {
+      "type":"Physical Plant",
+      "id":"Headend",
+      "title":"Headend",
+      "thumbnail_src":"http://www.perecom.com/headend1.jpg",
+      "description":"Connects the hubs and <span class=\"gloss\" data-viewid=\"Node_1\" data-highlight=\"Node\">nodes</span> over <span class=\"gloss\" data-viewid=\"Fiber_Optic_Cable001\" data-highlight=\"Fiberoptic_Cable\">fiberoptic cable</span> to video, voice, and data services. The headend facility houses electronic equipment to receive, process, and transmit data, and may use local <span class=\"gloss\" data-viewid=\"OTA_Antenna_1\" data-highlight=\"Over-the-Air_OTA_Antenna\">over-the-air (OTA) antennas</span> and <span class=\"gloss\" data-viewid=\"TV_Receive_Only_Dish\" data-highlight=\"TV_Receive_Only_Dish\">television receive-only (TVRO) satellite dishes</span>.",
+      "html":"<ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"../opXLDemo/SCTE/Headend_Facilities/index_scorm.html\">SCTE/ISBE: Headend Facilities</a></li>  </ul> "
+   },
+   "Hub":{
+      "type":"Physical Plant",
+      "id":"Hub",
+      "title":"Hub",
+      "thumbnail_src":"http://www.perecom.com/headend1.jpg",
+      "description":"Houses CATV gear to provide video, voice and data services closer to the subscribers.",
+      "html":" <span>Hubs are connected to a regional <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span> with <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span> and may include Edge QAMs, combiners, laser transmitters and receivers, and other CATV equipment. </span> "
+   },
+   "In-Span_Fiber_Slack_Storage":{
+      "type":"Physical Plant",
+      "id":"In-Span_Fiber_Slack_Storage",
+      "title":"In-Span Fiber Slack Storage",
+      "thumbnail_src":"http://www.linemen-tools.com/v/vspfiles/photos/MLNK-2110-SSPSS-1.jpg",
+      "description":"Stores <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\" data-highlight=\"Fiberoptic_Cable\">fiberoptic cable</span> hanging from the <span class=\"gloss\" data-viewid=\"Strand_2\" data-highlight=\"Strand\">strand</span>.",
+      "html":" <span>Used in pairs, in-span fiber slack storage, such as the Multilink Sno-Shoe®, stores additional fiberoptic cable (slack), allowing the splice case to be moved into a trailer.</span> "
+   },
+   "Inside_Wire":{
+      "type":"Physical Plant",
+      "id":"Inside_Wire",
+      "title":"Inside Wire",
+      "thumbnail_src":"https://app.resrc.it/S=W438/O=100/https://d1tqc0m69rhker.cloudfront.net/products/sw-30377/sw-30377.jpg",
+      "description":"Carries RF signals between the RF Demarc to the cable outlets inside the customer premises.",
+      "html":" <span>Inside wire should be RG6 but older installations may be RG59, which has a higher attenuation across the spectrum.</span> "
+   },
+   "Integrated_Receiver_Transcoder":{
+      "type":"Physical Plant",
+      "id":"Integrated_Receiver_Transcoder",
+      "title":"Integrated Receiver Transcoder",
+      "thumbnail_src":"https://www.proflixsales.com/images/stories/virtuemart/product/H-IRD-V3q.jpg",
+      "description":"The Integrated Receiver Transcoder (IRT) converts the incoming signal from the TVRO antenna into a standard format, such as an MPEG2 transport stream, and outputs over ASI or GigE.",
+      "html":" <span>Learn more..</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.wescobrasil.com.br/signal-origination/dsr-6100-commercial-integrated-receiver-transcoder/eng\">How does the IRT work?</a></li>  </ul> "
+   },
+   "IP_Security_Camera":{
+      "type":"Physical Plant",
+      "id":"IP_Security_Camera",
+      "title":"IP Security Camera",
+      "thumbnail_src":"http://i5.walmartimages.com/dfw/dce07b8c-be5e/k2-_ff89fa26-435b-4038-9c9d-d306c7146666.v1.jpg",
+      "description":"Operates over the Internet to monitor and record video and audio.",
+      "html":" <span>IP cameras (hard-wired and WiFi) are part of the growing trend in home automation. </span> "
+   },
+   "Laser_Receiver":{
+      "type":"Physical Plant",
+      "id":"Laser_Receiver",
+      "title":"Laser Receiver",
+      "thumbnail_src":"http://www.pace.com/Global/Images/Networks/Products/p_pwl4200c.jpg",
+      "description":"Converts the optical pulses on the returns into RF signals.",
+      "html":" <span>Learn more..</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.blondertongue.com/shop-by-department/catv/fiber-optics/indoor-receivers/nodes/\">Are there different types of laser receivers?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.thefoa.org/tech/ref/appln/transceiver.html\">How do laser receivers work?</a></li> </ul> "
+   },
+   "Laser_Transmitter":{
+      "type":"Physical Plant",
+      "id":"Laser_Transmitter",
+      "title":"Laser Transmitter",
+      "thumbnail_src":"http://www.pace.com/Global/Images/Networks/Products/p_pwl4200c.jpg",
+      "description":"Converts the modulated RF carrier to optical pulses which are transmitted down the <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span>.",
+      "html":" <span>Learn more..</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.pace.com/universal/networks/products/headend-hub/transmitters/1310nm/\">Are there different types of laser transmitters?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.thefoa.org/tech/ref/OSP/OSPdatalink.html\">How do laser transmitters work?</a></li> </ul> "
+   },
+   "Lashing_Clamp":{
+      "type":"Physical Plant",
+      "id":"Lashing_Clamp",
+      "title":"Lashing Clamp",
+      "thumbnail_src":"http://www.electricmotioncompany.com/wp-content/uploads/2015/02/8009a.jpg",
+      "description":"Secures lashing wire to <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span>",
+      "html":" <span>Galvanized steel clamps are used to secure the lashing wire wrapped around the cables to the strand.</span> "
+   },
+   "Lashing_Wire":{
+      "type":"Physical Plant",
+      "id":"Lashing_Wire",
+      "title":"Lashing Wire",
+      "thumbnail_src":"",
+      "description":"Secures cable to <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span>",
+      "html":""
+   },
+   "Lashing_Support_Strap":{
+      "type":"Physical Plant",
+      "id":"Lashing_Support_Strap",
+      "title":"Lashing Support Strap",
+      "thumbnail_src":"http://www.macleanseniorindustries.com/images/Products/GroupImages/LashingGroup.JPG",
+      "description":"Straps hardline cable, <span class=\"gloss\" data-viewid=\"Drop_Cable_1\">drop cable</span>, and <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span> to the <span class=\"gloss\" data-viewid=\"Strand_2\">strand</span>.",
+      "html":" <span>Straps are used with spacers and are available in different lengths and widths to support individual cables or bundles.</span> "
+   },
+   "MOCA_Ethernet_Extender":{
+      "type":"Physical Plant",
+      "id":"MOCA_Ethernet_Extender",
+      "title":"MOCA Ethernet Extender",
+      "thumbnail_src":"http://www.pace.com/Global/Images/Networks/Products/p_nc4000sg.png",
+      "description":"Uses MOCA frequencies to encode and decode Ethernet frames using existing coax inside wire. The device is designed to extend a wired Ethernet port from the cable modem or gateway to a remote part of the customer's facility.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.mocalliance.org/about/faqs.htm\">What is MOCA?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.youtube.com/embed/OSlK6Q1tTpg\">How do I install a MOCA local area network?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.creative-wisdom.com/teaching/network/ethernet.shtml\">What is Ethernet?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://compnetworking.about.com/od/ethernet/f/ethernet-port.htm\">What is an Ethernet port?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.howtogeek.com/70494/what-kind-of-ethernet-cat-5e6a-cable-should-i-use/\">Are all Ethernet cables the same?</a></li>  </ul> "
+   },
+   "MOCA_WiFi_Extender":{
+      "type":"Physical Plant",
+      "id":"MOCA_WiFi_Extender",
+      "title":"MOCA WiFi Extender",
+      "thumbnail_src":"http://www.pace.com/Global/Images/Networks/Products/p_nc4000sg.png",
+      "description":"Uses MOCA frequencies to encode and decode Ethernet frames using existing coax inside wire. The device is designed to extend the WiFi service from the cable modem, router, or gateway device to remote areas of the customer's location. ",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.mocalliance.org/about/faqs.htm\">What is MOCA?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.youtube.com/embed/OSlK6Q1tTpg\">What's the best way to install a MOCA local area network?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/IEEE_802.11\">What's WiFi?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.repeaterstore.com/pages/wifi-booster-repeater-extender-differences\">What's a WiFi extender?</a></li> </ul> "
+   },
+   "Network_Attached_Storage":{
+      "type":"Physical Plant",
+      "id":"Network_Attached_Storage",
+      "title":"Network Attached Storage",
+      "thumbnail_src":"http://i.cmpnet.com/informationweek/galleries/automated/474/01QNAP_TS-410_full.jpg",
+      "description":"Provides network-available storage and retrieval of large amounts of data such as videos, movies, pictures, and document files.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/Network-attached_storage\">What is Network-attached Storage (NAS)?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.networkcomputing.com/storage/slideshow-network-attached-storage/1975091660\">Who makes NAS devices?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.freeraidrecovery.com/library/what-is-raid.aspx\">What is RAID?</a></li> </ul> "
+   },
+   "Node":{
+      "type":"Physical Plant",
+      "id":"Node",
+      "title":"Node",
+      "thumbnail_src":"http://www.pace.com/Global/Images/Networks/Products/p_nc4000sg.png",
+      "description":"The node is the interface between the <span class=\"gloss\" data-highlight=\"Fiberoptic_Cable\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span> and the <span class=\"gloss\" data-highlight=\"Hardline_Cable\" data-viewid=\"Hardline_Cable_2\">hardline cable</span> in a HFC network. The node is an active device, meaning that it requires power from a <span class=\"gloss\" data-highlight=\"Power_Supply\" data-viewid=\"Power_Supply_1\">power supply</span>, inserted into the node by the <span class=\"gloss\" data-highlight=\"Power_Inserter\" data-viewid=\"Power_Inserter_1\">power inserter.",
+      "html":" <span>Also known as an optical node, this device is the key component in an HFC network; a failure here will affect hundreds of customers. Noise from the customers funnel into the node and may affect its performance. Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_RoleOfTheNode.html\">Try it! Identify the role of the node.</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_Identify_Major_Optical_Components_OSP.html\">Try it! Identify optical components</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/RF_Theory_TS_opxl/index.html?hidenav=1&page=Activity_Node_Function.html\">Try it! How does a node work?</a></li> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.pace.com/universal/networks/products/outdoor-plant/nc4000-optical-node/\">Pace/Aurora Advanced Services Node</a></li> </ul> "
+   },
+   "Over-the-Air_OTA_Antenna":{
+      "type":"Physical Plant",
+      "id":"Over-the-Air_OTA_Antenna",
+      "title":"Over-the-Air (OTA) Antenna",
+      "thumbnail_src":"http://pisces.bbystatic.com/image2/BestBuy_US/images/mp/products/1311/1311886/1311886444/1311886444_500x500_sa.jpg",
+      "description":"Receives digital TV signals from local stations.",
+      "html":" <span>The Over-the-Air (OTA) Antenna is mounted on a tower at the <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span>.</span> "
+   },
+   "Optical_Network_Unit_ONU":{
+      "type":"Physical Plant",
+      "id":"Optical_Network_Unit_ONU",
+      "title":"Optical Network Unit ONU",
+      "thumbnail_src":"http://www.arris.com/globalassets/images/products/hero-images/fftmax2000_hero.png",
+      "description":"Converts light to RF and vice versa. Used in FTTH Demarc enclosures with RF over Glass (RFoG) topologies.",
+      "html":" <span>The RFoG ONU acts as a mini node, converting optical signals in the downstream for voice, video, and data into RF, to be carried over the customer’s inside wire to the cable modem, gateway, or set top box. In the upstream, the ONU converts RF into optical signals to be carried back to the hub or <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span> over the fiberoptic cable.</span> "
+   },
+   "Pad":{
+      "type":"Physical Plant",
+      "id":"Pad",
+      "title":"Pad",
+      "thumbnail_src":"http://msicatv.com/Content/images/pads-equal-accs.jpg",
+      "description":"Attenuates the signal as it passes through the amplifier module.",
+      "html":" <span>Pads are available in a number of dB values</span> "
+   },
+   "Passive_Combiner":{
+      "type":"Physical Plant",
+      "id":"Passive_Combiner",
+      "title":"Passive Combiner",
+      "thumbnail_src":"http://www.tonercable.com/images/products/xl/oc_series_passive_combiners.jpg",
+      "description":"Combines the channel output signals of the various video and audio devices.",
+      "html":""
+   },
+   "Pedestal":{
+      "type":"Physical Plant",
+      "id":"Pedestal",
+      "title":"Pedestal",
+      "thumbnail_src":"http://cdn1.bigcommerce.com/server4200/puhr4/products/304/images/404/thumb_436_56070.1352223917.135.120.jpg?c=2",
+      "description":"Protects the active and passive devices connected to the underground plant via a tap.",
+      "html":" <span>Pedestals are typically two pieces, a stationary base and a removable cover. There are many types of underground-plant access points: Pedestals, hand-holds, and cabinets are just a few.</span> "
+   },
+   "Power_Inserter":{
+      "type":"Physical Plant",
+      "id":"Power_Inserter",
+      "title":"Power Inserter",
+      "thumbnail_src":"http://www.multicominc.com/wp-content/uploads/Multicom_MSSA-300x300.jpg",
+      "description":"Inserts AC power from the <span class=\"gloss\" data-highlight=\"Power_Supply\" data-viewid=\"Power_Supply_1\">power supply</span> onto the <span class=\"gloss\" data-highlight=\"Hardline_Cable\" data-viewid=\"Power_Inserter_Cable\">hardline cable</span>.",
+      "html":" <span>Passively combines RF with up to 90VAC to power active electronics on the hardline cable. </span> "
+   },
+   "Power_Supply":{
+      "type":"Physical Plant",
+      "id":"Power_Supply",
+      "title":"Power Supply",
+      "thumbnail_src":"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRX1deuVeLM04mysjLnj_IbdayfTP-ehW_mf74omXzj4aQb_kcO4A",
+      "description":"Regulates utility power to provide clean AC power over <span class=\"gloss\" data-viewid=\"Power_Inserter_Cable\">hardline cable</span> to active electronics in the OSP, such as <span class=\"gloss\" data-viewid=\"Node_1\">nodes</span>, amplifiers, and Wireless Hubs.",
+      "html":"<ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.alpha.com/technology-showcase/xm3/XM3_360viewer_live.html\">The Alpha XM3-HP CableUPS</a></li><li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"../opXLDemo/DM3DemoLauncher.html\">AlphaNet™ DM3 Series Transponder Installation Certification Course</a></li><li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://alpha.pagedip.com/alphanet-dm3\">AlphaNet™ DM3 Series Transponder Installation Quick Start Guide</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=DarkAndStormNight.html\">Ride Along: Responding to a Power Supply Alarm</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Power_Supply_Exploding_Battery.html\">Safety Tip: Exploding Batteries</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Quiz_Power_Supply_Battery_Safety.html\">Activity: Battery Safety</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Quiz_Electrical_Safety_Tips.html\">Activity: Electrical Safety Tips for Power Supplies</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=RideAlong_PowerSupplyComponents.html\">Ride Along: Power Supply Components</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Power_Supply_Cabinet.html\">Inside the Power Supply Cabinet</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Quiz_PS_Cabinet.html\">Activity: Identify Power Supply Cabinet Elements</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Power_Supply_XM2.html\">Reviewing the Alpha XM2</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Power_Supply_XM2_FBD.html\">The XM2 Functional Block Diagram</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Power_Supply_Transponder_Functions.html\">Transponder Functions</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Quiz_Transponders.html\">Activity: Transponder Functions</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"/opXLDemo/course/AC_Power_TS_opxl/index.html?hidenav=1&amp;page=Quiz_Transponders1.html\">Activity: Power Supply Alarms</a></li> </ul> "
+   },
+   "Power_Supply_Cabinet":{
+      "type":"Physical Plant",
+      "id":"Power_Supply_Cabinet",
+      "title":"Power Supply Cabinet",
+      "thumbnail_src":"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRX1deuVeLM04mysjLnj_IbdayfTP-ehW_mf74omXzj4aQb_kcO4A",
+      "description":"Protects the <span class=\"gloss\" data-highlight=\"Power_Supply\" data-viewid=\"Power_Supply_1\">power supply</span>, batteries, and associated electronics.",
+      "html":""
+   },
+   "QAM_Add_Drop_Inserter":{
+      "type":"Physical Plant",
+      "id":"QAM_Add_Drop_Inserter",
+      "title":"QAM Add/Drop Inserter",
+      "thumbnail_src":"http://www.blondertongue.com/assets/item/large/AQM_PEV.jpg",
+      "description":"Encodes analog and digital baseband signals and outputs an MPEG2 transport stream over GigE.",
+      "html":""
+   },
+   "QAM_Modulator":{
+      "type":"Physical Plant",
+      "id":"QAM_Modulator",
+      "title":"QAM Modulator",
+      "thumbnail_src":"http://www.blondertongue.com/assets/item/large/AQM_PEV.jpg",
+      "description":"Uses the MPEG-2 digital transport stream, input using GigE, to modulate an RF carrier.",
+      "html":" <span>QAM modulators are rack mounted. Each one controls where on the RF spectrum the QAM carrier is placed.</span> "
+   },
+   "Receiver_Encoder":{
+      "type":"Physical Plant",
+      "id":"Receiver_Encoder",
+      "title":"Receiver Encoder",
+      "thumbnail_src":"http://www.softel-optic.com/pic/big/517_2.jpg",
+      "description":"Converts multiple formats of digital and analog video into an MPEG2 transport stream over a GigE interface.",
+      "html":" <span>Learn more....</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://wolfcrow.com/blog/understanding-mpeg-2-mpeg-4-h-264-avchd-and-h-265/\">What are MPEG2, MPEG4, and the other digital video standards?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://wolfcrow.com/blog/program-stream-vs-transport-stream-the-simple-difference/\">What are transport streams?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dveo.com/broadcast-systems/5-Channel-Analog-to-ASI-Encoder.html\">Some Analog to Digital Encoders</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.blondertongue.com/shop-by-department/encoders/hd-encoders/\">Some Digital Encoders</a></li> </ul> "
+   },
+   "Regional_Operations_Center":{
+      "type":"Physical Plant",
+      "id":"Regional_Operations_Center",
+      "title":"Regional Operations Center",
+      "thumbnail_src":"http://www.spinc-arch.com/images/projects/commercial/1_comcast_reg_op_center/700x220.jpg",
+      "description":"Monitors and controls the status of signals, devices, and facilities.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.youtube.com/embed/8IrkqeOqZoc\">What is a firewall?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dell.com/us/business/p/poweredge-rack-servers?/index.html?hidenav=1&page=ck=anav\">What is a server?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://whatis.techtarget.com/definition/Web-server\">What is a web server?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.catvdictionary.com/catv_dictionary_Cable_Telephony_definition.html\">How does cable telephony work?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.rovicorp.com/products-and-solutions/products/guides.html\">What is an electronic program guide?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.ossline.com/2010/12/definition-oss-bss.html\">Why are OSS/BSS important?</a></li> <li><span productinfo=\"\" data-src=\"http://www.atci.com/simulsats.html\">All about ACTI TVRO Antennas.</a></li> <li><span productinfo=\"\" data-src=\"http://www.althos.com/tutorial/TV-advertising-tutorial-ad-splicing.html\">All about Althos Ad Insertion.</a></li> <li><span productinfo=\"\" data-src=\"http://www.edgeware.tv/products/vcp-origin.html\">All about VOD from Edgeware.</a></li>  </ul> "
+   },
+   "Regulated_Power_Module":{
+      "type":"Physical Plant",
+      "id":"Regulated_Power_Module",
+      "title":"Regulated Power Module",
+      "thumbnail_src":"http://www.broadbandinternational.com/images/products/377.jpg",
+      "description":"Converts AC to regulated DC in order to power the electronics.",
+      "html":" <span>Power modules (power packs) are replaceable and vary in form factor depending on vendor and amplifier model.</span> "
+   },
+   "RF_Combiner":{
+      "type":"Physical Plant",
+      "id":"RF_Combiner",
+      "title":"RF Combiner",
+      "thumbnail_src":"https://www.blondertongue.com/assets/item/large/1028-33-HPC-VL.jpg",
+      "description":"Combines the RF feeds from the QAM modulators, CMTS, and other RF equipment.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://www.blondertongue.com/search.aspx?keywords=combiners\">Are there different types of combiners?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/North_American_television_frequencies\">What frequencies are used?</a></li> </ul> "
+   },
+   "RF_Demarc":{
+      "type":"Physical Plant",
+      "id":"RF_Demarc",
+      "title":"RF Demarc",
+      "thumbnail_src":"https://www.aflglobal.com/productlist/Product-Lines/Optical-Connectivity---Apparatus/CableGuard-500-Coax-Demarcation-Enclosure/img/CG-500-Coax-Demarcation-Enclosure.aspx",
+      "description":"Houses the physical interface between the drop and the customer's inside wire.  ",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.ashireporter.org/HomeInspection/Articles/NEC-250-94-Bonding-for-Other-Systems/1953\">Why do we bond to ground?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.prosatellitesupply.com/grounding.html\">What options do we have for bonding to ground??</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.arcomlabs.com/37MoCAFilter.html\">When do we use a MOCA filter?</a></li> </ul>"
+   },
+   "RFoG_Optical_Network_Unit_ONU_":{
+      "type":"Physical Plant",
+      "id":"RFoG_Optical_Network_Unit_ONU_",
+      "title":"RFoG Optical Network Unit (ONU)",
+      "thumbnail_src":"http://www.arris.com/globalassets/images/products/hero-images/fftmax2000_hero.png",
+      "description":"Serves as a mini-node in a FTTH demarc supporting RF over Glass (RFoG).",
+      "html":" <span>The RFoG ONU acts as a mini-node, converting optical signals in the downstream for voice, video, and data into RF, to be carried over the customer’s inside wire to the cable modem, gateway, or set top box. In the upstream, the ONU converts RF into optical signals to be carried back to the hub or <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span> over the <span class=\"gloss\" data-viewid=\"Fiberoptic_Cable_1\">fiberoptic cable</span>.</span> "
+   },
+   "Security_Panel":{
+      "type":"Physical Plant",
+      "id":"Security_Panel",
+      "title":"Security Panel",
+      "thumbnail_src":"http://thehomesecurityadvisor.com/wp-content/uploads/2015/01/Xfinity-Control-Panel-300x225.png",
+      "description":"Configures and controls security and home automation devices installed by the cable operator.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.xfinity.com/resources/home-automation.html\">What is home automation?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.cisco.com/c/en/us/solutions/internet-of-things/overview.html\">What is the Internet of Things (IoT)?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/Ultra-high-definition_television\">What is UHD?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://customer.xfinity.com/help-and-support/home-security/\">What is Xfinity Home?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.timewarnercable.com/en/intelligenthome/overview.html\">What is IntelligentHome?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.suddenlink.com/security\">What is Suddenlink Security?</a></li> </ul> "
+   },
+   "Server":{
+      "type":"Physical Plant",
+      "id":"Server",
+      "title":"Server",
+      "thumbnail_src":"http://thehomesecurityadvisor.com/wp-content/uploads/2015/01/Xfinity-Control-Panel-300x225.png",
+      "description":"Provides storage and retrieval of web pages, configuration files, and logs of system and device status.",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.dell.com/us/business/p/poweredge-rack-servers?/index.html?hidenav=1&page=ck=anav\">What is a server?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://whatis.techtarget.com/definition/Web-server\">What is a web server?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/Ultra-high-definition_television\">What is UHD?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://customer.xfinity.com/help-and-support/home-security/\">What is Xfinity Home?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.timewarnercable.com/en/intelligenthome/overview.html\">What is IntelligentHome?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.suddenlink.com/security\">What is Suddenlink Security?</a></li> </ul> "
+   },
+   "Shrink_Tube":{
+      "type":"Physical Plant",
+      "id":"Shrink_Tube",
+      "title":"Shrink Tube",
+      "thumbnail_src":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT-uOA13dLy64N05E7XCNRcYtzal-q1MZMyyY9wIkostsp0HNsL",
+      "description":"Protects hardline connectors from the elements.",
+      "html":" <span>A heat gun or torch is used to shrink the tubing</span> "
+   },
+   "Splice_Case":{
+      "type":"Physical Plant",
+      "id":"Splice_Case",
+      "title":"Splice Case",
+      "thumbnail_src":"http://jtoptics.com/image/cache/catalog/BOX/JT%20OPTICS%20DOME%20ENCLOSURE-500x500.jpg",
+      "description":"Secures the fiber splices in a protective case.",
+      "html":" <span>Used aerially or in a pedestal. The splice case is available in a variety of sizes and configurations. Designed with fiberoptic cable slack, stored using the sno shoes, the case can be easily removed and placed in a splicing truck, out of the weather.</span> <ul class=\"linkList\"> <li><a class=\"productInfo\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.commscope.com/catalog/enterprise/product.aspx?id=137\">Commscope Splice Cases</a></li> </ul> "
+   },
+   "Splitter":{
+      "type":"Physical Plant",
+      "id":"Splitter",
+      "title":"Splitter",
+      "thumbnail_src":"http://cdn.shopify.com/s/files/1/0751/1419/products/CMC2002H_20400x400_large.jpeg?v=1424154399",
+      "description":"Splits and combines the RF signals to support multiple CPE devices.",
+      "html":" <span>Passively splits the downstream and combines the upstream RF signals at the customer location.</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.swhowto.com/VideoLoss.htm\">What are the losses through a splitter?</a></li>  </ul> "
+   },
+   "Strand":{
+      "type":"Physical Plant",
+      "id":"Strand",
+      "title":"Strand",
+      "thumbnail_src":"http://www.centurywireproducts.com/uploadimages/image/strand-1-sm.jpg",
+      "description":"Attaches to <span class=\"gloss\" data-viewid=\"Utility_Pole\" data-highlight=\"Utility_Pole\">utility poles</span> to support aerial cable and electronics in the OSP.",
+      "html":" <span>Strand is stranded galvanized steel cable, available in 1/4\", 5/16\", and 3/8\" diameters. Strand is also called messenger and is connected to utility poles. Strand can support thousands of pounds.</span> "
+   },
+   "Strand_Suspension_Clamp":{
+      "type":"Physical Plant",
+      "id":"Strand_Suspension_Clamp",
+      "title":"Strand Suspension Clamp",
+      "thumbnail_src":"https://www.codale.com/images/product-detail/513845.jpg",
+      "description":"Secures <span class=\"gloss\" data-viewid=\"Strand_2\" data-highlight=\"Strand\">strand</span> to pole or support",
+      "html":" <span>Galvanized steel clamps are used on poles to secure the strand in place and are available in straight-through (shown) or corner pole (right angle).</span> "
+   },
+   "TV_Receive_Only_Dish":{
+      "type":"Physical Plant",
+      "id":"TV_Receive_Only_Dish",
+      "title":"TV Receive Only Dish",
+      "thumbnail_src":"http://www.fristweb.com/user/jecthai/media/image/je0182.jpg",
+      "description":"The TV Receive-only (TVRO) antenna receives programming from national networks at the <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span>.",
+      "html":" <span>The RF signal received by the antenna is typically a modulated MPEG4 stream which has to be converted to an MPEG2 transport stream. The RF signal from the antenna is routed to a integrated receiver transcoder (IRT) for this process.</span> "
+   },
+   "Tap":{
+      "type":"Physical Plant",
+      "id":"Tap",
+      "title":"Tap",
+      "thumbnail_src":"http://people.seas.harvard.edu//index.html?hidenav=1&page=jones/cscie129/nu_lectures/lecture13/CATV/taps_1.jpg",
+      "description":"Splits the downstream RF spectrum to multiple <span class=\"gloss\" data-viewid=\"Drop_Cable_1\" data-highlight=\"Drop_Cable\">drop cables</span> and combines the upstreams from the drops.",
+      "html":" <span>Taps are available in 2, 4, and 8 ports and in varying dB levels of attenuation.</span> "
+   },
+   "Transcoder":{
+      "type":"Physical Plant",
+      "id":"Transcoder",
+      "title":"Transcoder",
+      "thumbnail_src":"http://www.incanetworks.com/wp-content/uploads/2014/04/4430-5430-1024x300.jpg",
+      "description":"Converts the Integrated Receiver Decoder (IRD) output signal to a format that can be connected to the hub router and switch.",
+      "html":" <span>The IRD decodes the digital data from the satellite and rebuilds it into a signal compatible with other <span class=\"gloss\" data-viewid=\"Headend_1\" data-highlight=\"Headend\">headend</span>/hub processing equipment.</span> "
+   },
+   "Transport_Stream_TS_Analyzer":{
+      "type":"Physical Plant",
+      "id":"Transport_Stream_TS_Analyzer",
+      "title":"Transport Stream (TS) Analyzer",
+      "thumbnail_src":"http://cableworld.hu/media/com_hikashop/upload/asi_and_qam_analyzer_led.png",
+      "description":"Demodulates the ASI and QAM transport streams so they can be checked for quality.",
+      "html":""
+   },
+   "TV":{
+      "type":"Physical Plant",
+      "id":"TV",
+      "title":"TV",
+      "thumbnail_src":"http://static.trustedreviews.com/94/00002501a/1ea8/OLED-TV-55EM960V.jpeg",
+      "description":"A TV displays and outputs the program information (video, audio, guide, metadata)",
+      "html":" <span>Learn more...</span> <ul class=\"linkList\"> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"cpe-resolution.html\">What is TV resolution?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"cpe-aspectratio.html\">What is aspect ratio?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"https://en.wikipedia.org/wiki/Ultra-high-definition_television\">What is UHD?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.digitaltrends.com/home-theater/hdmi-2-0-explained/\">What is HDMI 2.0?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://techforluddites.com/roku-what-is-it-and-how-do-you-use-it/\">What is RoKu?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://techforluddites.com/google-chromecast-what-is-it-and-how-do-you-use-it/\">What is ChromeCast?</a></li> <li><a class=\"popupLink\" target=\"ContentFrame\" data-frameheight=\"680px\" data-framewidth=\"1024px\" href=\"http://www.timewarnercable.com/en/support/program-your-remote.html\">How do I program a remote?</a></li> </ul> "
+   },
+   "Utility_Pole":{
+      "type":"Physical Plant",
+      "id":"Utility_Pole",
+      "title":"Utility Pole",
+      "thumbnail_src":"",
+      "description":"",
+      "html":""
+   },
+   "WiFi_Thermostat":{
+      "type":"Physical Plant",
+      "id":"WiFi_Thermostat",
+      "title":"WiFi Thermostat",
+      "thumbnail_src":"http://pisces.bbystatic.com/image2/BestBuy_US/images/products/4346/4346501_sa.jpg;canvasHeight=105;canvasWidth=105",
+      "description":"Operates on the Internet of Things (IoT). May be configured, operated, and monitored over the internet.",
+      "html":" <span>WiFi thermostats are part of the growing trend in home automation. </span> "
+   },
+   "Wireless_Hub":{
+      "type":"Physical Plant",
+      "id":"Wireless_Hub",
+      "title":"Wireless Hub",
+      "thumbnail_src":"http://6915416c32e4851eca5d-c094c6710edd9b0999733b05a7cec13d.r9.cf2.rackcdn.com/images/products/7781cm.png",
+      "description":"Provides access to the Internet and to the carrier's private network using WiFi.",
+      "html":" <span>Also known as a Hotspot, the WiFi hub broadcasts multiple network names for use by mobile and fixed devices nearby. These hubs enable Internet access similar to a wireless router in the home. </span> "
+   },
+   "Adjustable_Wrenches":{
+      "type":"Tool",
+      "id":"Adjustable_Wrenches",
+      "title":"Adjustable Wrenches",
+      "thumbnail_src":"http://ecx.images-amazon.com/images/I/31fSfx6Gm1L.jpg",
+      "description":"Tightens and loosens connectors and splices.",
+      "html":""
+   },
+   "Anti-Static_Trim_and_Alignment_Tools":{
+      "type":"Tool",
+      "id":"Anti-Static_Trim_and_Alignment_Tools",
+      "title":"Anti-Static Trim and Alignment Tools",
+      "thumbnail_src":"http://www.tecratools.com/media/productImages/22152.jpg",
+      "description":"Adjusts internal amp components - made of anti-static material.",
+      "html":""
+   },
+   "Cleaner_Scraper":{
+      "type":"Tool",
+      "id":"Cleaner_Scraper",
+      "title":"Cleaner/Scraper",
+      "thumbnail_src":"http://www.ripley-tools.com/wp-content/uploads/73_NewCC100_CC200-Copy.jpg",
+      "description":"Removes waste dielectric from the center conductor after coring.",
+      "html":""
+   },
+   "Cordless_Heat_Gun":{
+      "type":"Tool",
+      "id":"Cordless_Heat_Gun",
+      "title":"Cordless Heat Gun",
+      "thumbnail_src":"https://heatshrinkgun.files.wordpress.com/2013/08/hg360.png",
+      "description":"Shrinks the tubing around connectors to make a weather-resistant seal.",
+      "html":""
+   },
+   "Foot-Pound_Torque_Wrench":{
+      "type":"Tool",
+      "id":"Foot-Pound_Torque_Wrench",
+      "title":"Foot-Pound Torque Wrench",
+      "thumbnail_src":"http://d2pbmlo3fglvvr.cloudfront.net/product/full/Z1DN7ufo5oy.jpg",
+      "description":"Ensures proper torque on case bolts in order to make sure the case gasket is not deformed as the bolts are tightened.",
+      "html":""
+   },
+   "Hardline_Coring_Tool":{
+      "type":"Tool",
+      "id":"Hardline_Coring_Tool",
+      "title":"Hardline Coring Tool",
+      "thumbnail_src":"http://www.cableprep.com/wp-content/uploads/2012/05/p-sct.jpg",
+      "description":"Removes the dielectric foam inside the hardline cable to prep it for a connector.",
+      "html":""
+   },
+   "Hardline_Cutter":{
+      "type":"Tool",
+      "id":"Hardline_Cutter",
+      "title":"Hardline Cutter",
+      "thumbnail_src":"https://avalanche.tessco.com/productimages/250x250/267697.jpg",
+      "description":"Trims the hardline cable. ",
+      "html":""
+   },
+   "Hex_Key_Set":{
+      "type":"Tool",
+      "id":"Hex_Key_Set",
+      "title":"Hex Key Set",
+      "thumbnail_src":"http://2j2e0t1q2q5h348nps3hd39w15fg.wpengine.netdna-cdn.com/wp-content/uploads/2014/12/3-Pc-SAE-Metric-Torx-Folding-Hex-Key-Set-300x300.jpg",
+      "description":"Loosens and tightens hex screws",
+      "html":""
+   },
+   "Inch-Pound_Torque_Wrench":{
+      "type":"Tool",
+      "id":"Inch-Pound_Torque_Wrench",
+      "title":"Inch-Pound Torque Wrench",
+      "thumbnail_src":"http://d2pbmlo3fglvvr.cloudfront.net/product/large/Z1yK5_fo5oy.jpg",
+      "description":"Tightens connectors to specified torque to avoid deforming gaskets.",
+      "html":""
+   },
+   "Pliers_Set":{
+      "type":"Tool",
+      "id":"Pliers_Set",
+      "title":"Pliers Set",
+      "thumbnail_src":"http://atdtools.com/images/pics/ATD-827_SET.jpg",
+      "description":"Grabs, holds,  tightens, and loosens the fittings found in the OSP.",
+      "html":""
+   },
+   "Screwdriver_Set":{
+      "type":"Tool",
+      "id":"Screwdriver_Set",
+      "title":"Screwdriver Set",
+      "thumbnail_src":"http://www.northerntool.com/images/product/2000x2000/174/17417_2000x2000.jpg",
+      "description":"Tightens and loosens seizure screws and used for general purposes where needed.",
+      "html":""
+   },
+   "Socket_and_Box_Wrench_Kit":{
+      "type":"Tool",
+      "id":"Socket_and_Box_Wrench_Kit",
+      "title":"Socket and Box Wrench Kit",
+      "thumbnail_src":"http://ecx.images-amazon.com/images/I/51P7TW9Li2L._SY300_.jpg",
+      "description":"Loosens and tightens bolts on multiple devices and support gear in the OSP. ",
+      "html":""
+   }
+}

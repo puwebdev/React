@@ -1,0 +1,83 @@
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+@mixin boxBorderBox {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+@mixin radialGradient($c1, $c2, $c3){
+  background: -webkit-radial-gradient($c1, $c2, $c3); 
+  background: -o-radial-gradient($c1, $c2, $c3); 
+  background: -moz-radial-gradient($c1, $c2, $c3); 
+  background: radial-gradient($c1, $c2, $c3);
+ }
+ 
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        $browser: '-webkit-' !global;
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        $browser: '-moz-' !global;
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        $browser: '-o-' !global;
+        @content;
+    }
+    @keyframes #{$animationName} {
+        $browser: '' !global;
+        @content;
+    }
+} $browser: null;
+
+ 
+@mixin elementAnimationDelay ($delay) {
+    $delay : 0 !default;
+
+    animation-delay: $delay;
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    -o-animation-delay: $delay;
+    -ms-animation-delay: $delay;
+
+}
+
+@mixin noSelectable() {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;  
+}
