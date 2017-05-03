@@ -30,3 +30,8 @@ export const asyncValidate = (values, dispatch) => {
         });
     });
 };
+
+export const markersSizes = [
+      { value: 4, label: "Extra Small"}, { value: 8, label: "Small"}, { value: 16, label: "Medium"},
+      { value: 32, label: "Large"}, { value: 64, label: "Extra Large"}
+    ]

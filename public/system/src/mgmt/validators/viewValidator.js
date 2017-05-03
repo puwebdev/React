@@ -54,8 +54,13 @@ export const asyncValidate = (values, dispatch) => {
     });
 };
 
-export const populateObjectsLeft = (gearMap) => {
-    let ls = gearMap, ob, key, gearMapped = [], uniqueList = {};
+export const orderLowercase = (a, b) => { 
+    return String(a).toLowerCase() > String(b).toLowerCase() ? 1 : -1;
+}
+
+
+export const populateObjectsLeft = (ls) => {
+    let ob, key, gearMapped = [], uniqueList = {};
     if (ls) {
         for(key in ls) {
             if (key && !uniqueList[key]) {
@@ -64,18 +69,32 @@ export const populateObjectsLeft = (gearMap) => {
             }
         }
     }
-    return gearMapped.sort();
+    return gearMapped.sort(orderLowercase);
 }
 
 export const populateObjectsRight = (gearMap) => {
     let ls = gearMap, ob, key, gearMapped = [], uniqueList = {};
     if (ls) {
         for(key in ls) {
-            if (key && ls[key] && !uniqueList[ls[key]]) {
-                gearMapped.push(ls[key]);
-                uniqueList[ls[key]] = true;
+            if (key && ls[key] && ls[key].mappedKey && !uniqueList[ls[key].mappedKey]) {
+                gearMapped.push(ls[key].mappedKey);
+                uniqueList[ls[key].mappedKey] = true;
             }
         }
     }
-    return gearMapped.sort();
+    return gearMapped.sort(orderLowercase);
+}
+
+export const populateGearMapFull = (gearMap) => {
+    let gearMapped = [{
+            label: "Mapped objects",
+            value: "0",
+            gears: populateObjectsRight(gearMap).map((ob, idx) => { return { label: ob, value: ob}; })
+        },
+        {
+            label: "Scene objects",
+            value: "1",
+            gears: populateObjectsLeft(gearMap).map((ob, idx) => { return { label: ob, value: ob}; })
+        }];
+    return gearMapped;
 }
