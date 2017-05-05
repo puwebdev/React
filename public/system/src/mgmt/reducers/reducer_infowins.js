@@ -1,5 +1,6 @@
 import {
 	FETCH_INFOWINS, FETCH_INFOWINS_SUCCESS, FETCH_INFOWINS_FAILURE, RESET_INFOWINS,
+  	FETCH_PRODUCTSMAP, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE,
 	SAVE_OINFOWINS, SAVE_OINFOWINS_SUCCESS, SAVE_OINFOWINS_FAILURE, RESET_SAVE_OINFOWINS,
 	FETCH_INFOWIN, FETCH_INFOWIN_SUCCESS,  FETCH_INFOWIN_FAILURE, RESET_ACTIVE_INFOWIN,
 	CREATE_INFOWIN, CREATE_INFOWIN_SUCCESS, CREATE_INFOWIN_FAILURE, RESET_NEW_INFOWIN,
@@ -11,12 +12,25 @@ import {
 
   let baseInfowin = {
     title: "",
-    name: ""
+    name: "",
+    defaultForGroups: [],
+    groupCommands: [],
+    css3dUrl: "",
+    view : { 
+            screenshot: "_missing.png",
+            cameraPosition: {x: 0, y: 0, z: 0},
+            targetPosition: {x: 0, y: 0, z: 0},
+            onLoadActions: { hide: [], show: [] },
+            mediaAnimatorData: {},
+            mediaAnimatorAutoStart: false
+        },
+    infowins: []
   };
 
 	const INITIAL_STATE = { infowinsList: {infowins: [], error:null, loading: false},  
 							newInfowin:{infowin:baseInfowin, error: null, loading: false}, 
 							activeInfowin:{infowin:null, error:null, loading: false}, 
+              activeProducts:{product:null, error:null, loading: false}, 
 							deletedInfowin: {infowin: null, error:null, loading: false},
               clonedInfowin: {infowin: null, error:null, loading: false},
 						};
@@ -57,6 +71,14 @@ export default function(state = INITIAL_STATE, action) {
   case RESET_ACTIVE_INFOWIN:
     return { ...state, activeInfowin: {infowin: null, error:null, loading: false}};
 
+  case FETCH_PRODUCTSMAP:
+    return { ...state, activeProducts:{...state.activeProducts, loading: true}};
+  case FETCH_PRODUCTS_SUCCESS:
+    return { ...state, activeProducts: {product: action.payload.data, error:null, loading: false}};
+  case FETCH_PRODUCTS_FAILURE:
+    error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
+    return { ...state, activeProducts: {product: null, error:error, loading:false}};
+
 
   case CREATE_INFOWIN:
   	return {...state, newInfowin: {...state.newInfowin, loading: true}}
@@ -66,7 +88,7 @@ export default function(state = INITIAL_STATE, action) {
     error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
   	return {...state, newInfowin: {infowin:null, error:error, loading: false}}
   case RESET_NEW_INFOWIN:
-  	return {...state,  newInfowin:{infowin:null, error:null, loading: false}}
+  	return {...state,  newInfowin:{infowin:baseInfowin, error:null, loading: false}}
 
   case UPDATE_INFOWINCAM:
     return {...state, newInfowin: {...state.newInfowin, error: null, loading: true}}
