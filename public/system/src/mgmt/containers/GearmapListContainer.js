@@ -14,13 +14,21 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchGearmap: () => {
-      dispatch(fetchGearmap(worldId)).then((response) => {
-            !response.error ? dispatch(fetchGearmapSuccess(response.payload.data)) : dispatch(fetchGearmapFailure(response.payload));
-          });
-    },
-    saveGearmap: (gearmap, worldId) => {
       return new Promise((resolve, reject) => {
-          dispatch(saveGearmap(worldId, gearmap)).then((response) => {
+          dispatch(fetchGearmap(worldId)).then((response) => {
+              if (!response.error) {
+                dispatch(fetchGearmapSuccess(response.payload.data));
+                resolve();
+              } else {
+                dispatch(fetchGearmapFailure(response.payload));
+                reject(response.payload);
+              }
+          });
+      });
+    },
+    saveGearmap: (groupsMap, objDelKeys, worldId) => {
+      return new Promise((resolve, reject) => {
+          dispatch(saveGearmap(worldId, groupsMap, objDelKeys)).then((response) => {
               if (!response.error) {
                 dispatch(saveGearmapSuccess(response.payload.data));
                 resolve();

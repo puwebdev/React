@@ -20,6 +20,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateInfowins: (infowins) => {
       dispatch(fetchInfowinsSuccess({data: infowins})) 
+    },
+    saveOInfowins: (nOrder) => {
+      dispatch(saveOInfowins(worldId, nOrder)).then((response) => { 
+        !response.error ? dispatch(saveOInfowinsSuccess(response.payload.data)) : dispatch(saveOInfowinsFailure(response.payload));
+      });
     }
   }
 }
