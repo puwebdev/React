@@ -134,13 +134,16 @@ module.exports = function (grunt) {
           src: [ 
             "./public/system/lib/js/underscore/underscore-min.js",
             "./public/system/lib/js/axios/axios.js",
-            "./public/system/lib/js/greensock/minified/TweenLite.min.js",
+            "./public/system/lib/js/classie/classie.js",
+            "./public/system/lib/js/greensock/minified/TweenMax.min.js",
             "./public/system/lib/js/greensock/minified/plugins/ScrollToPlugin.min.js",
             "./public/system/lib/js/three/three.min.js",
             "./public/system/lib/js/three/Detector.js",
             "./public/system/lib/js/three/controls/OrbitControls.js",
             "./public/system/lib/js/three/loaders/MTLLoader.js",
             "./public/system/lib/js/three/loaders/OBJLoader.js",
+            "./public/system/lib/js/three/CSS3DRenderer.js",
+            "./public/system/lib/js/handlebars/handlebars-v4.0.5.js",
             "./public/system/build/app3d.js"
             ],
           dest: "./public/system/build/min/app3d.min.js"
@@ -199,7 +202,7 @@ module.exports = function (grunt) {
    grunt.registerTask("mgmtMin", ["uglify:mgmt"]);
    
    grunt.registerTask("production", [
-     "sass", "cssmin", 
+     "sass", "cssmin", "less",
      "browserify:dist", "browserify:mgmt", "browserify:mgmtVendor", 
      "uglify:app3d", "uglify:mgmt"
      ]);
