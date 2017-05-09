@@ -6,13 +6,26 @@ module.exports = function (app, passport) {
 
   // serialize sessions
   passport.serializeUser(function(user, done) {
-    done(null, user.id)
+    if (user.sco_info) {
+      done(null, user);
+    } else {
+      done(null, user.id);
+    }
   })
 
-  passport.deserializeUser(function(id, done) {
-    User.findOne({ _id: id }, function (err, user) {
-      done(err, user)
-    })
+  passport.deserializeUser(function(key, done) {
+    if (key.sco_info) {
+      key.roleAdmin = function() {return 1;};
+      key.gravatar = function(size) {
+        if (!size) size = 200;
+        return 'https://gravatar.com/avatar/?s=' + size + '&d=retro';
+      };
+      done(null, key);
+    } else {
+      User.findOne({ _id: key }, function (err, user) {
+        done(err, user)
+      });
+    } 
   })
 
   // use local strategy

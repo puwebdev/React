@@ -8,7 +8,6 @@ module.exports = function (ROOT_PATH) {
     },
     database: {
       url: 'mongodb://localhost:27017/opxl3dviewer'
-      //url: 'mongodb://appadmin:7ni6GfJuxbkCCN@ds133428.mlab.com:33428/xpert_world_users_staging'
 	  },
     BaseApiURL : 'http://localhost:3000/api/',
     root     : ROOT_PATH,
@@ -24,6 +23,17 @@ module.exports = function (ROOT_PATH) {
       width       : 1280,
       height      : 800,
       maxRenders: 50
+    },
+    scte : {
+      API: {
+        urlToken: 'https://devapi.scte.org/SCTEApi/token',
+        urlData: 'https://devapi.scte.org/SCTEApi/api/product/XXXX?systemid=OpXL',
+        credentials: {
+          userName: 'dedmunds@scte.org',
+          password: 'testrecord',
+          grant_type: 'password'
+        }
+      }
     }
   }
   return config;

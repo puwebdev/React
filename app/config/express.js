@@ -83,7 +83,7 @@ module.exports = function (app, express, passport) {
   app.use(function(req, res, next) {
 
     var path = req.path.split('/')[1];
-    if (/api/i.test(path)) {
+    if (/api/i.test(path) || /v1/i.test(path)) {
       return next();
     } else {
 
@@ -111,11 +111,13 @@ module.exports = function (app, express, passport) {
   // will print stacktrace
   if (app.get('env') === 'development') {
     app.use(responseTime());
+    app.locals.pretty = true;  
   } else {
     app.use(compression({
       filter: function (req, res) { return /json|text|javascript|css/.test(res.getHeader('Content-Type')) },
       level: 9
-    }))
+    }));
+    app.locals.pretty = true; //To test on Staging
   }
 
   app.use(function handleNotFound(req, res, next){

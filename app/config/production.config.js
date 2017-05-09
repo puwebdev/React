@@ -23,6 +23,17 @@ module.exports = function (ROOT_PATH) {
       width       : 1280,
       height      : 800,
       maxRenders: 50
+    },
+    scte : {
+      API: {
+        urlToken: 'https://devapi.scte.org/SCTEApi/token',
+        urlData: 'https://devapi.scte.org/SCTEApi/api/product/XXXX?systemid=OpXL',
+        credentials: {
+          userName: 'dedmunds@scte.org',
+          password: 'testrecord',
+          grant_type: 'password'
+        }
+      }
     }
   }
   return config;
