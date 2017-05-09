@@ -14,14 +14,9 @@ const orderByTitle = (a, b) => {
   return String(a.slug || "") >= String(b.slug || "") ? 1 : -1;
 };
 
-const addMarkerToParent = (parent, marker, options, res) => {
+const addMarkerToParent = (parent, marker, res) => {
   if (!parent.markers) { parent.markers = []; }
-  var addedPosition = parent.markers.length;
-  if (options) {
-    var foundIndex = parent.markers.indexOf(options.originalMarkerId);
-    addedPosition = (options.relativePosition === 'before') ? foundIndex : foundIndex + 1;
-  }
-  parent.markers.splice(addedPosition, 0, marker._id);
+  parent.markers.push(marker._id);
 
   return parent.save(function (err) {
     if (err) return utils.responses(res, 500, err);
@@ -101,7 +96,7 @@ exports.create = function (req, res, next) {
       if (err) return utils.responses(res, 500, err);
       if (!parentInfowin) return utils.responses(res, 404, { message: "Parent Infowin not found"});
 
-      addMarkerToParent(parentInfowin, newMarker, null, res);
+      return addMarkerToParent(parentInfowin, newMarker, res);
     });
     
   });
@@ -125,7 +120,7 @@ exports.update = function (req, res, next) {
     if (err) return utils.responses(res, 500, err);
     if (!existingMarker) return utils.responses(res, 404, { message: "Marker not found. Not saving anything."});
 
-    _.merge(existingMarker, marker);
+    existingMarker = Object.assign(existingMarker, marker);
     existingMarker.save(function (err, newMarker) {
       if (err) return utils.responses(res, 500, err);
       return utils.responses(res, 200, newMarker);

@@ -1,8 +1,6 @@
 var config = require('../../config/config');
 var mongoose = require('mongoose');
-var View = mongoose.model('View');
 var World = mongoose.model('World');
-var ViewsSet = mongoose.model('ViewsSet');
 var utils = require(config.root + '/helper/utils');
 var helper = require(config.root + '/helper/helper');
 var screenshots = require('../../helper/screenshots');
@@ -31,10 +29,9 @@ exports.read = function(req, res, next) {
     World.loadBySlug(foundWorld.slug, function(err, w) {
         jsonConfig["mainScene"] = w.modelInfo;
         jsonConfig["mainScene"].worldId = w._id;
-        //jsonConfig["gearMap"] = w.gearMap;
-        //jsonConfig["viewsSets"] = w.viewsSets;
+        jsonConfig["groupsMap"] = w.groupsMap;
         jsonConfig["infowins"] = w.infowins;
-        jsonConfig["gearList"] = dataHelper.createGearList(w);
+        jsonConfig["objectsMap"] = w.objectsMap;
 
         return utils.responses(res, 200, jsonConfig);
     });

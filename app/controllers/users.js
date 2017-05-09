@@ -76,10 +76,7 @@ exports.session = login
 
 exports.create = function (req, res, next) {
   var user = new User(req.body)
-  user.provider = 'local';
-  //Disable this form
-  return res.redirect('/')
-
+  user.provider = 'local'
   user.save(function (err, new_user) {
     if (err) {
       return res.render('users/signup', {
@@ -111,6 +108,18 @@ exports.show = function (req, res, next) {
     title: user.name,
     user: user
   })
+}
+
+exports.useofterms = function(req, res, next) {
+  var user = req.user;
+  res.render('users/useofterms', {
+    title: 'UseOfTerms',
+    user: user
+  })
+}
+
+exports.agree = function(req, res, next) {
+  res.redirect('/');
 }
 
 
@@ -194,7 +203,7 @@ exports.postForgotPassword = function (req, res) {
     }, function(token, user, next) {
         user.url_reset_password = req.protocol + '://' + req.headers.host + '/reset/' + token
 
-        Mailer.sendOne('forgot-password', "Trick.JS - Password Reset", user, function (err, responseStatus, html, text){
+        Mailer.sendOne('forgot-password', "XpertUniversity - Password Reset", user, function (err, responseStatus, html, text){
           next(err, responseStatus);
         })
       }
@@ -261,7 +270,7 @@ exports.postResetPassword = function (req, res) {
     }], function(user) {
       user.url_login = req.protocol + '://' + req.headers.host + '/login'
 
-      Mailer.sendOne('reset-password', "Trick.JS - Your password has been changed", user, function (err, responseStatus, html, text) {
+      Mailer.sendOne('reset-password', "XpertUniversity - Your password has been changed", user, function (err, responseStatus, html, text) {
         if(err) {
           return errorHelper.custom(res, { msg : err, code: 500 });
         } else {
