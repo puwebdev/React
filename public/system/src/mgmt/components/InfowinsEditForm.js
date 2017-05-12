@@ -1,19 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDom from 'react-dom';
 import { Router, Link } from 'react-router';
-import { Field, formValueSelector, reduxForm } from 'redux-form'
+import { Field, formValueSelector, reduxForm, change, submit } from 'redux-form'
 import { connect } from 'react-redux';
-import { fetchViews, fetchViewsSuccess, fetchViewsFailure } from '../actions/views';
 import {
   fetchInfowin, fetchInfowinSuccess, fetchInfowinwFailure, resetActiveInfowin,
+  fetchProductsMap, fetchProductsMapSuccess, fetchProductsMapFailure,
   updateInfowin, updateInfowinSuccess, updateInfowinFailure,
   deleteInfowin, deleteInfowinSuccess, deleteInfowinFailure,
-  cloneInfowin, cloneInfowinSuccess, cloneInfowinFailure,
   validateInfowinFields, validateInfowinFieldsSuccess, validateInfowinFieldsFailure
-}
-  from '../actions/infowins';
+} from '../actions/infowins';
 import { validateInfowin } from '../validators/infowinValidator';
-import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs';
+import { orderLowercase, populateObjectsLeft } from '../validators/viewValidator';
+import { markersSizes } from '../validators/markerValidator';
+
+import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs/inputs';
+import { renderProductSelect } from './inputs/InputFields';
+import { renderTinyMce } from './inputs/tinyMce';
+import { ModalDelete } from './inputs/modalDelete';
+import { ModalSaved } from './inputs/modalSaved';
+import { InputDropDownSemantic, InputDropDownSemanticOne } from './inputs/inputsDropdownSem';
+import { SortableList } from './inputs/sortableItem';
+import { ViewComponent } from './inputs/inputsViewComp';
+import { GroupCommands } from './inputs/inputsGroupCmds';
+import { QuestionComponent } from './inputs/inputsQuestionComp';
+import { getParentUrl } from '../helpers/helpers';
+import { deviceScreensOptionsFlattened, DeviceScreensComponent } from './inputs/inputsDeviceScreens';
+
+/* Constants */
 
 const worldId = window.config.mainScene.worldId;
 
@@ -44,23 +58,85 @@ class InfowinsForm extends Component {
     router: PropTypes.object
   };
 
-  state = {
-    lastModified: null
+  constructor(props) {
+      super(props);
+
+      this.state = {
+          firstLoad: true,
+          lastModified: null,
+          pCode: "",
+          productsCode: [],
+          delConfirmOpen: false,
+          parentUrl: ""
+      }
+      this.handleChange = this.handleChange.bind(this); 
+      this.handleTinyMceChange = this.handleTinyMceChange.bind(this);
+      this.toggleDelConfirmModal = this.toggleDelConfirmModal.bind(this);
+      this.saveInfowin = this.saveInfowin.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  handleChange(event){
+      this.setState({pCode: event.target.value});      
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.infowinId !== this.props.infowinId) {
+      this.setState({ parentUrl: "" });
       this.props.fetchInfowin(nextProps.infowinId);
     }
   }
-
-  componentDidMount() {
+ 
+  componentDidMount() {  
     this.props.fetchInfowin(this.props.infowinId);
-    this.props.fetchViews();
+  }
+  
+  setInitialValues(activeInfowin) {
+      var pcode = "";
+      var initialProductsCode = ["None", "BPI0500000", "BPI0700000"];
+
+      if (activeInfowin.infowin) {
+          pcode = activeInfowin.infowin.productCode ? activeInfowin.infowin.productCode : "";
+      } 
+
+      let fetchProducts = this.props.fetchProductsMap();
+      var _this = this;
+
+      fetchProducts.then(function() {
+        var removeableProducts = [];
+        var productsCode = initialProductsCode;
+
+         for(var i = 0; i < productsCode.length; i ++) {          
+          for(var j = 0; j < _this.props.activeProducts.product.length; j ++) {
+              if (_this.props.activeProducts.product[j]["product"] && 
+                _this.props.activeProducts.product[j]["product"] != pcode && 
+                _this.props.activeProducts.product[j]["product"] == productsCode[i]) {
+                  removeableProducts.push(_this.props.activeProducts.product[j]["product"]);
+                break;
+              }
+           }
+         }
+
+         for(var i = 0; i < removeableProducts.length; i ++) {            
+            var index = productsCode.indexOf(removeableProducts[i]);            
+            if(index != -1) {
+              productsCode.splice(index, 1);
+            }
+         }         
+          _this.setState({
+            productsCode: productsCode
+          });
+
+          _this.setState({
+            pCode: pcode,
+          });           
+      });
   }
 
-  componentDidUpdate() {
-    ReactDom.findDOMNode(this).scrollIntoView();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.firstLoad || prevProps.infowinId !== this.props.infowinId) {
+      ReactDom.findDOMNode(this).scrollIntoView();
+      this.setState({ firstLoad: false });
+    }
   }
 
   renderError(activeInfowin) {
@@ -70,75 +146,70 @@ class InfowinsForm extends Component {
           {activeInfowin ? activeInfowin.error.message : ''}
         </div>
       );
-    } else {
-      return <span></span>
-    }
+    } 
+    return null;    
   }
 
   saveInfowin(values, dispatch) {
-    let saver = validateAndUpdateInfowin(values, dispatch),
-      router = this.context.router;
-    saver.then(function(){
-      router.goBack();
-    });
+      var me = this,
+          camPos = values.view ? values.view.cameraPosition : {x:-1600, y:1400, z:-225},
+          tarPos = values.view ? values.view.targetPosition : {x:-230, y:380, z:-8000};
+      
+      me.refs.modalSaved.show("Saving...", false);
+
+      if (!values.productCode || values.productCode == "None")
+        values.productCode = "";
+
+      //Set camera to current view's coordinates
+      window.app3dViewer.viewPosition([camPos.x, camPos.y, camPos.z],[tarPos.x, tarPos.y, tarPos.z]);
+      //Generate screenshot and save
+      window.app3dViewer.generateScreenshot(240, 180, "image/png", false, "", false)
+          .then(function(screenshot) {
+              if (!values.view) { 
+                values.view = { 
+                  screenshot: "_missing.png",
+                  cameraPosition: {x: 0, y: 0, z: 0},
+                  targetPosition: {x: 0, y: 0, z: 0},
+                  onLoadActions: { hide: [], show: [] },
+                  mediaAnimatorData: {},
+                  mediaAnimatorAutoStart: false
+                }
+              }
+
+              values.view.screenshot = screenshot;
+              let saver = validateAndUpdateInfowin(values, dispatch),
+                  router = me.context.router;
+
+              saver.then(() => {
+                if (!me.state.parentUrl) {
+                  me.refs.modalSaved.setLabel("Saved!", true);
+                } else {
+                  me.refs.modalSaved.dismiss();
+                  router.push(me.state.parentUrl)
+                }
+              });
+          });      
   }
 
   deletethisInfowin() {
-    if (window.confirm('Are you sure to delete this?')) {
-      let deleter = this.props.deleteInfowin(this.props.parentType, this.props.parentId, this.props.infowinId),
+    this.toggleDelConfirmModal();
+
+    let me = this,
+        deleter = this.props.deleteInfowin(this.props.parentType, this.props.parentId, this.props.infowinId),
         router = this.context.router;
-      deleter.then(function(){
-        router.push("/infowins");
-      });
-    }
+
+    deleter.then(function(){
+        router.push(me.state.parentUrl)
+    });
+    
   }
 
-  cloneThisInfowin() {
-    alert("This functionality has been disabled: It generates an inconsistency in the DB.");
-    return; 
-    /*
-    let cloner = this.props.cloneInfowin(this.props.parentType, this.props.parentId, this.props.selectedRelativePosition, this.props.infowinId),
-      router = this.context.router;
-    cloner.then(function(){
-      router.goBack();
-    });*/    
-  }
-
-  renderChildInfowins(activeInfowin) {
-    if (activeInfowin && activeInfowin.infowin &&
-      activeInfowin.infowin.infowins &&
-      activeInfowin.infowin.infowins.length > 0) {
-      return activeInfowin.infowin.infowins.map((childInfowin) => {
-        if (childInfowin.qtype && childInfowin.qtype != '') {
-          return (
-            <li className="list-group-item" key={childInfowin._id}>
-              <Link to={"/questions/infowin/" + activeInfowin.infowin._id + "/" + childInfowin._id}>
-                <h3 className="list-group-item-heading">{childInfowin.title}</h3>
-              </Link>
-            </li>
-          );  
-        } else {
-          return (
-            <li className="list-group-item" key={childInfowin._id}>
-              <Link to={"/infowins/infowin/" + activeInfowin.infowin._id + "/" + childInfowin._id}>
-                <h3 className="list-group-item-heading">{childInfowin.title}</h3>
-              </Link>
-            </li>
-          );          
-        }
-      });
-    }
-    return null;
-  }
-
-  renderMarkers(activeInfowin) {
-    if (activeInfowin && activeInfowin.infowin &&
-      activeInfowin.infowin.markers &&
-      activeInfowin.infowin.markers.length) {
-      return activeInfowin.infowin.markers.map((marker) => {
+  renderMarkers(infowin) {
+    if (infowin && infowin.markers && infowin.markers.length > 0) {
+      return infowin.markers.map((marker) => {
         return (
           <li className="list-group-item" key={marker._id}>
-            <Link to={"/markers/" + activeInfowin.infowin._id + "/" + marker._id}>
+            <Link to={"/markers/" + infowin._id + "/" + marker._id}>
               <h3 className="list-group-item-heading">{marker.title}</h3>
             </Link>
           </li>
@@ -149,110 +220,169 @@ class InfowinsForm extends Component {
     return null;
   }  
 
-  populateViewSelections() {
-    const { viewsList } = this.props;
-    if (!viewsList.views || viewsList.views.length === 0) {
-      return null;
-    }
+  handleTinyMceChange(event) {
+  }
 
-    const viewsListSelections = viewsList.views.map(viewIterator => ({
-      label: viewIterator.title,
-      value: viewIterator._id
-    }));
+  toggleDelConfirmModal = () => {
+    this.setState({
+      delConfirmOpen: !this.state.delConfirmOpen
+    });
+  }
 
-    return viewsListSelections;
+  saveAndGo(nId, values, dispatch) {
+    this.setState({ parentUrl: getParentUrl(nId)});
+    this.saveInfowin(values, dispatch);
   }
 
   render() {
-    const {asyncValidating, handleSubmit, submitting, cloning, activeInfowin } = this.props;
-    const viewsListSelections = this.populateViewSelections();
-    const clonedRelativePositionSelections = [{
-      label: 'Before',
-      value: 'before'
-    }, {
-      label: 'After',
-      value: 'after'
-    }];
+    const productsCode = this.state.productsCode;
+    const {asyncValidating, handleSubmit, submitting, cloning, activeInfowin, viewsSetsList, productsMap } = this.props;
+    const groupsMap = populateObjectsLeft(window.config.groupsMap).map((ob, i) => { return { key: i, value: ob, text: ob, label: ob } });    
+    const deviceScreens = deviceScreensOptionsFlattened().map((ob, i) => { return { key: i, value: ob, label: ob } });
+    const currInfTree = activeInfowin && activeInfowin.infowin ? window.app3dViewsNav.infoWinsTreeById[activeInfowin.infowin._id] : null;
+
+    if(activeInfowin.loading) {
+        return <div className="container"><h1>Edit Infowin</h1><h3>Loading...</h3></div>      
+    } 
 
     return (
-      <div className="container">
+      <div className="container">        
+        <form onSubmit={handleSubmit(this.saveInfowin)}>
         <div className="view-title">
           <h1>Edit Infowin</h1>
           {activeInfowin.infowin &&
             <Link to={"/infowins/new/infowin/" + activeInfowin.infowin._id}>+ Add New Child Info Window</Link>
-          }
-          {activeInfowin.infowin &&
-            <Link to={"/questions/new/infowin/" + activeInfowin.infowin._id}>+ Add New Child Question</Link>
-          }
+          }          
           {activeInfowin.infowin &&
             <Link to={"/markers/new/" + activeInfowin.infowin._id}>+ Add New Marker</Link>
           }
+
+          <div className="btn-group pull-right">
+            <button type="submit" className="btn btn-primary" disabled={submitting}><span className="fa fa-save"></span> Save Infowin</button>
+            <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span className="caret"></span>
+              <span className="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul className="dropdown-menu">
+              {currInfTree && currInfTree.nextId &&
+              <li><a onClick={handleSubmit(this.saveAndGo.bind(this, currInfTree.nextId))}><span className="fa fa-arrow-right"></span> Save &amp; Next</a></li>
+              }
+              {currInfTree && currInfTree.prevId &&
+              <li><a onClick={handleSubmit(this.saveAndGo.bind(this, currInfTree.prevId))}><span className="fa fa-arrow-left"></span> Save &amp; Previous</a></li>
+              }
+              <li role="separator" className="divider"></li>
+              <li><a onClick={handleSubmit(this.toggleDelConfirmModal)}><span className="fa fa-times"></span> Delete this!</a></li>
+            </ul>
+          </div>
+
         </div>
-        {activeInfowin.infowin ? <h2>{activeInfowin.infowin.title}</h2> : null}
+        <div className="scrollable-content container">
         {this.renderError(activeInfowin)}
-        <form onSubmit={handleSubmit(this.saveInfowin.bind(this))}>
+          <div className="panel panel-default">
+            <div className="panel-heading">{activeInfowin.infowin ? <h3 className="panel-title">{activeInfowin.infowin.title}</h3> : "loading..."}</div>
+            <div className="panel-body">
+              <Field name="title" component={renderInput} type="text" isBig="true" placeholder="Title" label="Title"/>
 
-          <Field name="title" component={renderInput} type="text" placeholder="Title" label="Title"/>
+              <div className="row">
+                  <div className="col-sm-5">
+                    <Field name="type" component={renderInput} type="text" placeholder="Type" label="Type"/>
 
-          <Field name="name" component={renderInput} type="text" placeholder="Name" label="Name"/>
+                    <Field name="description" component={renderTinyMce} 
+                        onBlur={this.handleTinyMceChange} height="75"
+                        placeholder="Description" label="Description" rows="3"/>
 
-          <Field name="type" component={renderInput} type="text" placeholder="Type" label="Type"/>
+                    {activeInfowin && activeInfowin.infowin && 
+                    <Field name="defaultForGroups" component={InputDropDownSemanticOne} 
+                      value={activeInfowin.infowin.defaultForGroups}
+                      label="Default for groups" 
+                      placeholder="Select groups"
+                      options={groupsMap}  />
+                    }          
 
-          <Field name="thumbnail_src" component={renderInput} type="text" placeholder="Url of image" label="Thumbnail src (http://...)"/>
-
-          <Field name="description" component={renderTextarea} placeholder="Description" label="Description" rows="3"/>
-
-          <Field name="html" component={renderTextarea} placeholder="<p>...</p>" label="Html" rows="6"/>
-
-          <Field name="view" component={renderObjectSelect} label="View" dataArray={viewsListSelections} />
-
-          <div className="row">
-            <div className="col-sm-8">
-              <Field name="clonedRelativePosition" component={renderObjectSelect} label="Clone" dataArray={clonedRelativePositionSelections} />
-            </div>
-            <div className="col-sm-4">
-              <button type="button" className="btn btn-info btn-clone"
-                      onClick={this.cloneThisInfowin.bind(this)}
-                      disabled={cloning || !this.props.selectedRelativePosition}>
-                Clone
-              </button>
+                  </div>
+                  <div className="col-sm-7">
+                    <Field name="html" component={renderTinyMce} 
+                        onBlur={this.handleTinyMceChange} height="300"
+                        placeholder="<p>...</p>" label="Html" rows="6"/>
+                  </div>
+              </div>
+              {activeInfowin && activeInfowin.infowin && 
+              <Field name="css3ObjectPath" component={DeviceScreensComponent}
+                  dataArray={deviceScreens}  label="Css3d Object" />
+              }              
+                            
             </div>
           </div>
+
+          {activeInfowin && activeInfowin.infowin && 
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3 className="panel-title">View</h3></div>
+            <div className="panel-body">
+              <Field name="view" component={ViewComponent} value={activeInfowin.infowin.view} groupsMap={groupsMap} />
+            </div>
+          </div>
+          }
+
+          {activeInfowin && activeInfowin.infowin && 
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3 className="panel-title">Question</h3></div>
+            <div className="panel-body">
+              <Field name="questionsObj" component={QuestionComponent} value={activeInfowin.infowin.questionsObj} />
+            </div>
+          </div>
+          }        
+
+          {activeInfowin && activeInfowin.infowin && 
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3 className="panel-title">Groups' commands</h3></div>
+            <div className="panel-body">
+              <Field name="groupCommands" component={GroupCommands} value={activeInfowin.infowin.groupCommands} groupsMap={groupsMap} />
+            </div>
+          </div>
+          }            
+
+          {activeInfowin && activeInfowin.infowin && 
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3 className="panel-title">SCTE Product Code</h3></div>
+            <div className="panel-body">
+              <Field name="productCode" component={renderProductSelect} dataArray={productsCode} selectedValue={this.state.pCode} onChange={this.handleChange} /> 
+            </div>
+          </div>
+          }
 
           {activeInfowin && activeInfowin.infowin && activeInfowin.infowin.infowins && activeInfowin.infowin.infowins.length > 0 &&
           <div className="child-infowins children-list form-group">
             <h3>Child Infowins</h3>
-            {this.renderChildInfowins(activeInfowin)}
+            <SortableList data={activeInfowin.infowin.infowins} parentId={activeInfowin.infowin._id} parentType="infowin"/>
           </div>
           }
 
-          {activeInfowin && activeInfowin.infowin && activeInfowin.infowin.markers && activeInfowin.infowin.markers.length > 0 &&
+          {activeInfowin && activeInfowin.infowin &&
           <div className="child-markers children-list form-group">
-            <h3>Markers</h3>
-            {this.renderMarkers(activeInfowin)}
+            <h3>Markers &nbsp;  <small><Link to={"/markers/new/" + activeInfowin.infowin._id}>+ Add New Marker</Link></small></h3>
+            <div className="row">
+              <div className="col-sm-4">
+                <Field name="markerScale" component={renderObjectSelect} withoutNone="true" label="Marker Size" dataArray={markersSizes}  />
+              </div>
+            </div>
+            {this.renderMarkers(activeInfowin.infowin)}
           </div>
-          }          
+          }
 
-          <div className="form-group">
-            <button type="submit" className="btn btn-primary"  disabled={submitting} ><span className="fa fa-save"></span> Save</button>
-            <Link to="/infowins" className="btn btn-error">Cancel</Link>
-          </div>
-
-          <div className="form-group pull-right">
-            <button type="button" className="btn btn-danger"
-                    onClick={this.deletethisInfowin.bind(this)}
-                    disabled={submitting}>
-              Delete this infowin <span className="fa fa-times"></span>
-            </button>
-          </div>
+        </div>
         </form>
+        <ModalDelete show = {this.state.delConfirmOpen}
+          onOk = {this.deletethisInfowin.bind(this)}
+          onClose = {this.toggleDelConfirmModal}
+          activeInfowin = {activeInfowin.infowin}>
+        </ModalDelete>
+        <ModalSaved ref="modalSaved" label="Data saved!" dismissText="Ok!" />
 
       </div>
 
     );
   }
 }
-
 
 InfowinsForm = reduxForm({
   form: 'infowinsNewForm',
@@ -267,23 +397,39 @@ InfowinsForm = connect(
     parentType: ownProps.parentType,
     parentId: ownProps.parentId,
     infowinId: ownProps.id,
-    viewsList: state.views.viewsList,
     initialValues: state.infowins.activeInfowin.infowin,
-    activeInfowin: state.infowins.activeInfowin, // pull initial values from infowins reducer
-    selectedRelativePosition: selector(state, 'clonedRelativePosition'),
-    cloning: state.infowins.clonedInfowin.loading
+    activeInfowin: state.infowins.activeInfowin, // pull initial values from infowins reducer,
+    activeProducts: state.infowins.activeProducts, // pull initial values from infowins reducer
   }),
-    dispatch => ({
-    fetchViews: () => {
-      dispatch(fetchViews('world', worldId)).then((response) => {
-        !response.error ? dispatch(fetchViewsSuccess(response.payload.data)) : dispatch(fetchViewsFailure(response.payload));
-      });
-    },
+    (dispatch, ownProps) => ({
     fetchInfowin: (id) => {
-      dispatch(fetchInfowin(id)).then((response) => {
-        !response.error ? dispatch(fetchInfowinSuccess(response.payload.data)) : dispatch(fetchInfowinFailure(response.payload));
+      return new Promise((resolve, reject) => {
+        dispatch(fetchInfowin(id)).then((response) => {
+          let data = response.payload.data;
+          if (!response.error) {
+            dispatch(fetchInfowinSuccess(response.payload.data));
+            resolve();
+          } else {
+            dispatch(fetchInfowinFailure(response.payload));
+            reject(data);
+          }
+        });
       });
     },
+    fetchProductsMap: () => {
+      return new Promise((resolve, reject) => {
+        dispatch(fetchProductsMap()).then((response) => {
+          let data = response.payload.data;  
+          if (!response.error) {
+            dispatch(fetchProductsMapSuccess(response.payload.data));
+            resolve();
+          } else {
+            dispatch(fetchProductsMapFailure(response.payload));
+            reject(data);
+          }          
+        });
+      });
+    },    
     deleteInfowin: (parentType, parentId, id) => {
       return new Promise((resolve, reject) => {
         dispatch(deleteInfowin(parentType, parentId, id)).then((response) => {
@@ -297,20 +443,6 @@ InfowinsForm = connect(
           }
         });
 
-      });
-    },
-    cloneInfowin: (parentType, parentId, relativePosition, id) => {
-      return new Promise((resolve, reject) => {
-        dispatch(cloneInfowin(parentType, parentId, relativePosition, id)).then((response) => {
-          let data = response.payload.data;
-          if (!response.error) {
-            dispatch(cloneInfowinSuccess(response.payload.data));
-            resolve();
-          } else {
-            dispatch(cloneInfowinFailure(response.payload));
-            reject(data);
-          }
-        });
       });
     },
     resetMe: () => {

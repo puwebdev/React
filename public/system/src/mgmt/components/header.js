@@ -18,13 +18,10 @@ class Header extends Component {
                     <Link to="/"><span className="fa fa-home"></span></Link>
                 </li>
                 <li role="presentation">      
-                    <Link to="/viewsSets" activeClassName="active"><span className="fa fa-eye"></span> Views-Sets</Link>
-                </li>
-                <li role="presentation">      
                     <Link to="/infowins" activeClassName="active"><span className="fa fa-info-circle"></span> Info Windows</Link>
                 </li>
                 <li role="presentation">      
-                    <Link to="/gearmap" activeClassName="active"><span className="fa fa-cogs"></span> Gear-Map</Link>
+                    <Link to="/gearmap" activeClassName="active"><span className="fa fa-cogs"></span> Groups-Map</Link>
                 </li>
             </ul>
         </div>
