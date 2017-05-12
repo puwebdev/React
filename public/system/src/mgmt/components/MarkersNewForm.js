@@ -3,14 +3,14 @@ import ReactDom from 'react-dom';
 import { Router, Link } from 'react-router';
 import { Field, formValueSelector, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
-import { fetchViews, fetchViewsSuccess, fetchViewsFailure } from '../actions/views';
 import {
   createMarker, createMarkerSuccess, createMarkerFailure, resetNewMarker,
   validateMarkerFields, validateMarkerFieldsSuccess, validateMarkerFieldsFailure
 }
   from '../actions/markers';
 import { validateMarker } from '../validators/markerValidator';
-import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs';
+import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs/inputs';
+import { renderTinyMce } from './inputs/tinyMce';
 
 //For any field errors upon submission (i.e. not instant check)
 const validateAndCreateMarker = (values, dispatch, parentId) => {
@@ -63,6 +63,9 @@ class MarkerForm extends Component {
     }
   }
 
+  handleTinyMceChange() {
+  } 
+
   saveMarker(values, dispatch) {
     let saver = validateAndCreateMarker(values, dispatch, this.props.parentId),
       router = this.context.router;
@@ -91,13 +94,15 @@ class MarkerForm extends Component {
       <div className="container">
         <h1>New Marker</h1>
         {this.renderError(newMarker)}
-        <form onSubmit={handleSubmit(this.saveMarker.bind(this))}>
+        <form onSubmit={handleSubmit(this.saveMarker.bind(this))} className="scrollable-content container">
 
           <Field name="title" component={renderInput} isBig="true" type="text" placeholder="Title" label="Title"/>
           <Field name="letter" component={renderInput} type="text" placeholder="A or B or 1 or i or iii..." label="Letter on marker (only 1)"/>
           <Field name="direction" component={renderObjectSelect} withoutNone="true" dataArray={arrowDirection}  label="Arrow direction" />
           <Field name="faIcon" component={renderInput} placeholder="fa-info-circle or fa-check-circle or fa-times-circle ..." label="Font-Awesome Icon (http://fontawesome.io/icons/) on Feedback" />
-          <Field name="feedbackHtml" component={renderTextarea} placeholder="<p>...</p>" label="Feedback Html" rows="6"/>
+          <Field name="feedbackHtml" component={renderTinyMce} 
+                        onBlur={this.handleTinyMceChange} height="200"
+                        placeholder="<p>Optional...</p>" label="Feedback Html" rows="6"/>   
           <Field name="dismissText" component={renderInput} placeholder="Close or Got it! or Next or Dismiss ..." label="Dismiss Button text" />
           <Field name="optionsOnShowFeedback" component={renderInput} placeholder="{}" label="optionsOnShowFeedback" />
           <Field name="optionsOnDismissFeedback" component={renderInput} placeholder="{}" label="optionsOnDismissFeedback" />
@@ -132,7 +137,6 @@ MarkerForm = reduxForm({
 MarkerForm = connect(
   (state, ownProps) => ({
     parentId: ownProps.parentId,
-    viewsList: state.views.viewsList,
     initialValues: state.markers.newMarker.marker,
     newMarker: state.markers.newMarker // pull initial values from markers reducer
   }),

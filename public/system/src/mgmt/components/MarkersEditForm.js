@@ -3,7 +3,6 @@ import ReactDom from 'react-dom';
 import { Router, Link, ButtonLink } from 'react-router';
 import { Field, formValueSelector, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
-import { fetchViews, fetchViewsSuccess, fetchViewsFailure } from '../actions/views';
 import {
   fetchMarker, fetchMarkerSuccess, fetchMarkerwFailure, resetActiveMarker,
   updateMarker, updateMarkerSuccess, updateMarkerFailure, 
@@ -12,7 +11,8 @@ import {
 }
   from '../actions/markers';
 import { validateMarker } from '../validators/markerValidator';
-import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs';
+import { renderInput, renderTextarea, renderSelect, renderObjectSelect } from './inputs/inputs';
+import { renderTinyMce } from './inputs/tinyMce';
 
 //For any field errors upon submission (i.e. not instant check)
 const validateAndUpdateMarker = (values, dispatch, parentId) => {
@@ -39,25 +39,33 @@ const validateAndUpdateMarker = (values, dispatch, parentId) => {
 class MarkerForm extends Component {
   static contextTypes = {
     router: PropTypes.object
-  };
-
-  state = {
-    lastModified: null,
   }
 
-  componentWillMount() {
-    this.props.resetMe();
-  }
+  constructor(props) {
+      super(props);
+      this.state = {
+        firstLoad: true
+      };
+      this.handleTinyMceChange = this.handleTinyMceChange.bind(this);
+      
+  }  
 
   componentDidMount() {
       this.props.fetchMarker(this.props.markerId);
   }
 
-  componentDidUpdate() {
-      if (this.props.pristine && !this.props.submitting) {
-          ReactDom.findDOMNode(this).scrollIntoView();
-      }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.firstLoad || prevProps.markerId !== this.props.markerId) {
+      ReactDom.findDOMNode(this).scrollIntoView();
+      this.setState({ firstLoad: false });
+    }
   }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.markerId !== this.props.markerId) {
+      this.props.fetchMarker(nextProps.markerId);
+    }
+  }  
 
   renderError(newMarker) {
     if(newMarker && newMarker.error && newMarker.error.message) {
@@ -69,6 +77,9 @@ class MarkerForm extends Component {
     } else {
       return <span></span>
     }
+  }
+
+  handleTinyMceChange(event) {
   }
 
   saveMarker(values, dispatch) {
@@ -95,7 +106,7 @@ class MarkerForm extends Component {
   }
   
   render() {
-    const {asyncValidating, handleSubmit, pristine, submitting, newMarker } = this.props;
+    const {asyncValidating, handleSubmit, pristine, submitting, activeMarker } = this.props;
     const noYesSelect = [{
       label: 'No',
       value: false
@@ -113,14 +124,16 @@ class MarkerForm extends Component {
     return (
       <div className="container">
         <h1>Edit Marker</h1>
-        {this.renderError(newMarker)}
-        <form onSubmit={handleSubmit(this.saveMarker.bind(this))}>
+        {this.renderError(activeMarker)}
+        <form onSubmit={handleSubmit(this.saveMarker.bind(this))} className="scrollable-content container">
 
           <Field name="title" component={renderInput} isBig="true" type="text" placeholder="Title" label="Title"/>
           <Field name="letter" component={renderInput} type="text" placeholder="A or B or 1 or i or iii..." label="Letter on marker (only 1)"/>
           <Field name="direction" component={renderObjectSelect} withoutNone="true" dataArray={arrowDirection}  label="Arrow direction" />
           <Field name="faIcon" component={renderInput} placeholder="fa-info-circle or fa-check-circle or fa-times-circle ..." label="Font-Awesome Icon (http://fontawesome.io/icons/) on Feedback" />
-          <Field name="feedbackHtml" component={renderTextarea} placeholder="<p>...</p>" label="Feedback Html" rows="6"/>
+          <Field name="feedbackHtml" component={renderTinyMce} 
+                        onBlur={this.handleTinyMceChange} height="200"
+                        label="Feedback Html" />   
           <Field name="dismissText" component={renderInput} placeholder="Close or Got it! or Next or Dismiss ..." label="Dismiss Button text" />
           <Field name="optionsOnShowFeedback" component={renderInput} placeholder="{}" label="optionsOnShowFeedback" />
           <Field name="optionsOnDismissFeedback" component={renderInput} placeholder="{}" label="optionsOnDismissFeedback" />
