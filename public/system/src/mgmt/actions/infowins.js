@@ -53,7 +53,10 @@ export const UPDATE_INFOWINCAM = 'UPDATE_INFOWINCAM';
 export const UPDATE_INFOWINCAM_SUCCESS = 'UPDATE_INFOWINCAM_SUCCESS';
 export const UPDATE_INFOWINCAM_FAILURE = 'UPDATE_INFOWINCAM_FAILURE';
 
-
+//Product Map list
+export const FETCH_PRODUCTSMAP = 'FETCH_PRODUCTSMAP';
+export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
+export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 
 export function fetchInfowins(worldId, newOrderObject) {
   const request = axios({
@@ -347,5 +350,33 @@ export function cloneInfowinFailure(response) {
   return {
     type: CLONE_INFOWIN_FAILURE,
     payload: response
+  };
+}
+
+/* Product Map */
+
+export function fetchProductsMap() {
+  const request = axios({
+    method: 'get',    
+    url: `${ROOT_URL}/productsmap`
+  });
+
+  return {
+    type: FETCH_PRODUCTSMAP,
+    payload: request
+  };
+}
+
+export function fetchProductsMapSuccess(activeProducts) {
+  return {
+    type: FETCH_PRODUCTS_SUCCESS,
+    payload: activeProducts
+  };
+}
+
+export function fetchProductsMapFailure(error) {
+  return {
+    type: FETCH_PRODUCTS_FAILURE,
+    payload: error
   };
 }

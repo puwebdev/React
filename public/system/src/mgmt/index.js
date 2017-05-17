@@ -7,6 +7,10 @@ import configureStore from './store/configureStore.js';
 import { createHashHistory } from 'history';
 
 const appHistory = useRouterHistory( createHashHistory )({});
+appHistory.listenBefore((location, callback) => {
+    if (location.pathname.indexOf("/Content/") === 0) { callback(false); }
+    callback();
+})
 
 const store = configureStore();
 window.app3dMgmtStore = store;

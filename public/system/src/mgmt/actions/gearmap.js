@@ -16,7 +16,7 @@ export const RESET_SAVE_GEARMAP = 'RESET_SAVE_GEARMAP';
 export function fetchGearmap(worldId, newOrderObject) {
   const request = axios({
     method: 'get',
-    url: `${ROOT_URL}/gearmap`,
+    url: `${ROOT_URL}/groupsMap`,
     params: { worldId: worldId }
   });
 
@@ -26,10 +26,10 @@ export function fetchGearmap(worldId, newOrderObject) {
   };
 }
 
-export function fetchGearmapSuccess(gearmap) {
+export function fetchGearmapSuccess(groupsMap) {
   return {
     type: FETCH_GEARMAP_SUCCESS,
-    payload: gearmap
+    payload: groupsMap
   };
 }
 
@@ -43,11 +43,11 @@ export function fetchGearmapFailure(error) {
 
 /* Save */
 
-export function saveGearmap(worldId, gearmap) {
+export function saveGearmap(worldId, groupsMap, objDelKeys) {
   const request = axios({
     method: 'put',
-    url: `${ROOT_URL}/gearmap`,
-    data: { worldId: worldId, gearmap: gearmap || null }
+    url: `${ROOT_URL}/groupsMap`,
+    data: { worldId: worldId, groupsMap: groupsMap || null, objDelKeys: objDelKeys || null }
   });
 
   return {
