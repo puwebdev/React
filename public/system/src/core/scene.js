@@ -3,7 +3,11 @@ var __s__ = require('../utils/js-helpers.js'),
     Preloader = require('../utils/preloader.js'),
     RColor = require('../utils/random-color.js'),
     Renderer = require('./renderer.js'),
+    groupsFactory = require('./groups/groupsFactory'),
+    groupObject = require('./groups/groupObject'),
     datalayer = require('./datalayer.js');
+
+"use strict";
 
 //Class Scene
 export class Scene {
@@ -78,9 +82,15 @@ export class Scene {
 
         this.renderer3d = null;
         this._datalayer = datalayer;
+        this.groupsFactory = groupsFactory.GroupsFactory; //Singleton
+        this.groupsFactory.setParent(this);
 
         this.__currentHighlights = { ___num___: 0 };
         this.__hiddenMappedObjects = {};
+
+        this.__specificMode = false;
+        this.__isReady = false;
+        this.__initialInfowin = "";
 
         this.init();
         
@@ -88,10 +98,9 @@ export class Scene {
 
     //  .intersectOthers
     // Set to true to use the objects that aren't in the JSON maps. For normal behaviour, se to false.
-    get intersectOthers() { return this.renderer3d._intersectGroup === this.renderer3d.meshesHolder.children[1]; }
+    get intersectOthers() { console.error("Obsolete, in Admin mode all meshes are intersected"); return null; }
     set intersectOthers(v) { 
-        this.renderer3d._intersectGroup = !!v ? this.renderer3d.meshesHolder.children[1] : this.renderer3d.meshesRelevant;
-        this.renderer3d._intersectBehind = !v;
+        console.error("Obsolete, in Admin mode all meshes are intersected");
     }
 
     init() {
@@ -141,7 +150,7 @@ export class Scene {
             .then(function(fileObj) {
                 let objectsByName = me.renderer3d.objectsByName, 
                     materialsByName = me.renderer3d.materialsByName, mat, matFix, materialsFix, matClone, matCloneObj, matCloneData,
-                    key, mappedKey;
+                    key, mappedKey, obj;
                 let prefix = me.prefix;
 
                 me.renderer3d.createMeshesOfModel(fileObj, [
@@ -179,12 +188,10 @@ export class Scene {
                 }
 
                 //Create infoMap
-                window.config.infoMap = {};
-                me._populateInfomap(window.config.infoMap, window.config.gearList, window.config.gearMap);
+                window.config.infoMap = me._populateInfomap(window.config.groupsMap);
                    
                 //Fix materials
                 materialsFix  = window.config.materialsFix;
-
 
                 if (materialsFix && materialsFix.clones) {
                     for (j = 0, lenJ = materialsFix.clones.length; j < lenJ; j += 1) {
@@ -202,7 +209,6 @@ export class Scene {
                         matCloneObj.material = matClone;
                     }
                 }  
-
 
                 if (materialsFix && materialsFix.fixes) {
                     for (j = 0, lenJ = materialsFix.fixes.length; j < lenJ; j += 1) {
@@ -230,7 +236,18 @@ export class Scene {
                         if (matFix.wireframe)           { mat.wireframe = matFix.wireframe; }
                         if (matFix.alphaTest)           { mat.alphaTest = matFix.alphaTest; }
                     }
-                }             
+                }
+
+                //Check repeated names
+                let repeatedN = {};
+                me.renderer3d._modelsMapNames.map((n, i) => {
+                    if (!repeatedN[n]) { repeatedN[n] = { name: n, rep: 0}; }
+                    repeatedN[n].rep++;
+                });
+                let onlyRepeatedN = _.pluck(_.filter(repeatedN, (n, o) => { return n.rep > 1 }), "name");
+                if (onlyRepeatedN.length) {
+                    me.renderer3d._duplicatedModelNames = onlyRepeatedN;
+                }
 
             });
 
@@ -264,192 +281,80 @@ export class Scene {
         }
     }
 
-    _populateInfomap(infoMap, gearList, gearMap, callback) {
+    _populateInfomap(groupsMap, callback) {
         let me = this,
             prefix = me.prefix,
             objectsByName = me.renderer3d.objectsByName,
-            renderer3d = me.renderer3d,
-            gearMapReversed, gm;
+            renderer3d = me.renderer3d;
 
-        me._datalayer.infoMapAndHtml(infoMap, gearList, gearMap, objectsByName, prefix)
+        me._datalayer.infoGroupsProcess(groupsMap, objectsByName, prefix)
             .then(function(infoMap){
-                let key, imgLoad, msh, mappedKey;
+                let key, msh, group;
 
-                for (key in infoMap) {
-                    //SKIP !!!! for-loop if exists
-                    if (infoMap[key].obj !== null) { continue; }
+                //Add groups & objs to GroupsFactory
+                me.groupsFactory.addFromData(infoMap.objs, infoMap.groups);
 
-                    //Move mesh to meshesRelevant & create glowSibling
-                    mappedKey = infoMap[key].mappedKey;
-                    msh = objectsByName[prefix + key]
+                for (key in infoMap.objs) {
+                    //Move mesh to meshesRelevant
+                    msh = objectsByName[prefix + key];
                     renderer3d.meshesRelevant.add(msh);
                     renderer3d.meshesHolder.remove(msh);
-
-                    infoMap[key].obj = msh;
-                    infoMap[key].glowSibling = me.createGlowSibling(msh, infoMap[key].gearColor, mappedKey);
-
-                    //Pre-load its image
-                    if (gearList[mappedKey].thumbnail_src) {
-                        imgLoad = new Image();
-                        imgLoad.src = gearList[mappedKey].thumbnail_src;
-                    }
-
-                    //Improve the 3D Model
-                    if (infoMap[key].obj.material) {
-                        infoMap[key].obj.material.shininess = 100;
-                        infoMap[key].obj.material.needsUpdate  = true;
-                    }
-                    infoMap[key].obj.traverse(function (child) {
-                        child.material.shininess = 100;
-                        child.material.needsUpdate  = true;
-                    });            
                 }
+
+                //Add Glowsiblings to Scene
+                for (key in me.groupsFactory.objGlows) {
+                    renderer3d.objsGlow.add(me.groupsFactory.objGlows[key]);
+                }
+
+                for (key in infoMap.groups) {
+                    group = infoMap.groups[key];
+                    //Hide by Default
+                    if (group.hiddenByDefault) { me.groupsFactory.groups[key].visible = false; }
+                    //Add Pivots
+                    renderer3d.pivotsGroup.add(me.groupsFactory.groups[key]._pivot);
+                }
+
+
                 if (callback) { callback(); }
-            });
 
-            //Reverse gearMap => gearMapReversed
-            gearMapReversed = {};
-            for (gm in gearMap) {
-                if (!gearMapReversed[gearMap[gm]]) {
-                   gearMapReversed[gearMap[gm]] = []; 
+                window.config.infoMap = { objs: infoMap.objs, groups: infoMap.groups };
+
+                //Emit event dataProcessed
+                let ev = __d__.addEventDsptchr("dataProcessed");
+                me._baseNode.dispatchEvent(ev);
+
+                if (infoMap.logErrors && infoMap.logErrors.length) {
+                    renderer3d.__missingObjs = infoMap.logErrors.join("\n");
                 }
-                gearMapReversed[gearMap[gm]].push(gm);
-            }
-            window.config.gearMapReversed = gearMapReversed;
-    }
 
-    createGlowSibling (mesh, color = 0xff0000, mappedKey = "") {
-        let glowMaterial,
-            objGlow, pos;
-
-        if (!mesh || !mesh.geometry) { return null; }
-
-        glowMaterial = new THREE.MeshLambertMaterial({ color: color, side: THREE.FrontSide });
-
-        pos = mesh.position;
-        objGlow = new THREE.Mesh( mesh.geometry.clone(), glowMaterial);
-        objGlow.visible = false;
-        objGlow.position.copy(pos);
-
-        this.renderer3d.objsGlow.add(objGlow);
-        this.renderer3d.objsGlowArray.push(objGlow);
-
-        //Add a reference to mappedKey group
-        if (mappedKey) {
-            if (!this.renderer3d.objsGlowMapped[mappedKey]) {
-                this.renderer3d.objsGlowMapped[mappedKey] = [];
-            }
-            this.renderer3d.objsGlowMapped[mappedKey].push(objGlow);
-        }
-
-        return objGlow;
-    }
-
-    glowSiblingShow(mappedKey) {
-        let j, lenJ, 
-            mappedGroup = mappedKey ? this.renderer3d.objsGlowMapped[mappedKey] : this.renderer3d.objsGlowArray,
-            isHidden = this.__hiddenMappedObjects[mappedKey];
-
-        if (!mappedGroup || isHidden) { return; }
-
-        for (j = 0, lenJ = mappedGroup.length; j < lenJ; j += 1) {
-            mappedGroup[j].visible = true;
-        }
-        
-        this.renderer3d.objsGlow.visible = true; 
-    }
-
-    glowSiblingHide(mappedKey) {
-        let j, lenJ,
-            mappedGroup = mappedKey ? this.renderer3d.objsGlowMapped[mappedKey] : this.renderer3d.objsGlowArray;
-        
-        if (!mappedGroup) { return; }
-
-        if (!mappedKey) { this.renderer3d.objsGlow.visible = false; }
-
-        for (j = 0, lenJ = mappedGroup.length; j < lenJ; j += 1) {
-            mappedGroup[j].visible = false;
-        }
-    }
-
-    highlightGlowSibling(mappedKey) {
-        console.warn("highlightGlowSibling is obsolete, please use flashGlowSibling");
-        this.flashGlowSibling(mappedKey);
-    }
-
-    flashGlowSibling(mappedKey) {
-        const onOffInts = [400, 800, 1200], tOff = 200;
-        let me = this,
-            isHidden = this.__hiddenMappedObjects[mappedKey];
-
-        //Function that iterates group of glowSiblings to make them (in)visible
-        function turnThemOn(mg, doOn) {
-            for (var j = 0, lenJ = mg.length; j < lenJ; j += 1) {
-                mg[j].visible = doOn;
-            }
-        }
-
-        if (!mappedKey || isHidden || !this.renderer3d.objsGlowMapped[mappedKey]) { return; }
-
-        //Do not start a highlight if the object is highlighting
-        if (this.__currentHighlights[mappedKey]) { return; }
-        //Add it to a temporary store
-        this.__currentHighlights[mappedKey] = true;
-        this.__currentHighlights.___num___++;
-        
-        //Get group
-        let mappedGroup = this.renderer3d.objsGlowMapped[mappedKey];
-
-        me.renderer3d.objsGlow.visible = true;
-        setTimeout(function() { turnThemOn(mappedGroup, true); }, onOffInts[0]); //1 On
-        setTimeout(function() { turnThemOn(mappedGroup, false); }, onOffInts[0] + tOff); //1 Off
-        setTimeout(function() { turnThemOn(mappedGroup, true); }, onOffInts[1]); //2 On
-        setTimeout(function() { turnThemOn(mappedGroup, false); }, onOffInts[1] + tOff); //2 Off
-        setTimeout(function() { turnThemOn(mappedGroup, true); }, onOffInts[2]); //3 On
-        setTimeout(function() { //3 Off.
-            turnThemOn(mappedGroup, false);
-            //Clean-up
-            me.__currentHighlights[mappedKey] = false;
-            me.__currentHighlights.___num___--;
-            if (me.__currentHighlights.___num___ === 0) {
-                me.renderer3d.objsGlow.visible = false;
-            }
-        }, onOffInts[2] + tOff);
-
+                return infoMap;
+            });
     }
 
     setObjectVisibility(mappedKey, visibility, lookIn3dObjectsIfNotFound = true) {
         let target, 
-            arrayOfMapped, 
-            isMapped = true, 
-            isRelevant = true,
             j, lenJ, objj;
+
+        visibility = !!visibility;
+        target = this.get3dObject(mappedKey, lookIn3dObjectsIfNotFound);
         
-        //Get correspondent array of Objects' names
-        arrayOfMapped = window.config.gearMapReversed[mappedKey];
+        if (!target) { return; }
+        target.visible = visibility;
+    }
 
-        //Check it is mapped & belongs to relevant meshes
-        target = this.renderer3d.objsGlowMapped[mappedKey];
-
-        if (!arrayOfMapped) { isMapped = false; }
-        if (!target) { isRelevant = false; }
-                    
-        if (isMapped) {
-            this.__hiddenMappedObjects[mappedKey] = !visibility;
-            
-        } else if (lookIn3dObjectsIfNotFound) { //Not mapped, look in all the 3d objects
-            target = this.renderer3d.objectsByName[this.prefix + mappedKey];
-            if (target) { arrayOfMapped = [mappedKey]; }
+    get3dObject(name, lookIn3dObjectsIfNotFound = true) {
+        let target;
+        
+        //Try to get it from groups
+        target = this.groupsFactory.get(name);
+        if (target) {
+            return target;
         }
 
-        if (!arrayOfMapped || arrayOfMapped.length === 0) { console.warn(mappedKey + " not found"); return; }
+        if (!lookIn3dObjectsIfNotFound) { return null; }
 
-        //Iterate to show/hide
-        for (j = 0, lenJ = arrayOfMapped.length; j < lenJ; j += 1) {
-            target = this.renderer3d.objectsByName[this.prefix + arrayOfMapped[j]];
-            if (target) { target.visible = !!visibility; }
-        }      
-
+        //Try to get it from non-groups
+        return this.renderer3d.objectsByName[this.prefix + name];
     }
 
     getDimensions() {
@@ -502,7 +407,7 @@ export class Scene {
             toString = (v, t) => {
                 return (t ? "\"" + t + "\" : " : "") + "{ \"x\": " + v.x + ", \"y\": " + v.y + ", \"z\": " + v.z + " }";
             };
-
+        if (!camPos || !tarPos) { return [[0,0,0],[0,0,0]]; }
         
 
         if (!Array.isArray(position) || position.length !== 3) 
@@ -524,6 +429,20 @@ export class Scene {
         return [camPos, tarPos];         
     }
 
+    viewPositionObjs(trunc = 0) {
+        let camPos = this.renderer3d.camera.position,
+            tarPos = this.renderer3d.controls.target;
+
+        if (!trunc) { return { cameraPosition: camPos, targetPosition: tarPos }; }
+
+        const truncat = (v) => { return Math.round(v * Math.pow(10, trunc)) / Math.pow(10, trunc); }
+
+        return { 
+            cameraPosition: { x: truncat(camPos.x), y: truncat(camPos.y), z: truncat(camPos.z) },
+            targetPosition: { x: truncat(tarPos.x), y: truncat(tarPos.y), z: truncat(tarPos.z) }
+        };
+    }
+
     pauseRendering() {
         if (this.renderer3d) { this.renderer3d._isRendering = false; }
     }
@@ -535,6 +454,19 @@ export class Scene {
     toggleRendering(doRender = true) {
         if (!this.renderer3d) { return; }
         this.renderer3d._isRendering = !!doRender;
+    }
+
+    checkModelObjects() {
+        let dn = this.renderer3d._duplicatedModelNames, outp = "";
+        if (dn && dn.length) {
+            outp += "--- Objects with repeated names: ---\n" + 
+                        dn.join(" // ") +
+                        "\n------------------------------------\n";
+        }
+        if (this.renderer3d.__missingObjs) {
+            outp += this.renderer3d.__missingObjs;
+        }
+        return outp;
     }
 
     

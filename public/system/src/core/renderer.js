@@ -1,5 +1,7 @@
 var __s__ = require('../utils/js-helpers.js');
 var __d__ = require('../utils/dom-utilities.js');
+var css3D = require('./css3d');
+
 "use strict";
 //Class Renderer3D
 export class Renderer3D {
@@ -7,7 +9,7 @@ export class Renderer3D {
     constructor(parent, w, h) {
         this.scene = null;
         this.renderer = null;
-        this.camera = null; 
+        this.camera = null;
         this.raycaster = new THREE.Raycaster();
         this.mouseVector = new THREE.Vector2();
         this.controls = null;
@@ -17,16 +19,12 @@ export class Renderer3D {
         this.containerEvents = parent._baseNode;
         this.width = w;
         this.height = h;
+
         this.frames = 0;
+        this.framesDelta = 0;
+        this.framesLastTime = Date.now();
 
         this.followMouseEvents = false;
-
-        this._INTERSECTED = null;
-        this.objsGlow = new THREE.Group();
-        this.objsGlow.name = "objsGlow";
-        this.objsGlow.visible = false;
-        this.objsGlowArray = [];
-        this.objsGlowMapped = {};
 
         this.mouseStart = new THREE.Vector2();
         this.mouseLastClick = new Date();
@@ -39,14 +37,26 @@ export class Renderer3D {
 
         this.meshesHolder = new THREE.Group();
         this.meshesHolder.name = "meshesHolder";
+
         this.meshesRelevant = new THREE.Group();
+        this.meshesRelevant.name = "meshesRelevant";
         this.meshesHolder.add(this.meshesRelevant);
+
+        this._INTERSECTED = null;
+        this.objsGlow = new THREE.Group();
+        this.objsGlow.name = "objsGlow";
+        this.objsGlow.visible = true;
+        this.meshesHolder.add(this.objsGlow);
+
         this._intersectGroup = this.meshesRelevant;
-        this._intersectBehind = false;
 
         this.markersGroup = new THREE.Group();
         this.markersGroup.name = "markersGroup";
         this.meshesRelevant.add(this.markersGroup);
+
+        this.pivotsGroup = new THREE.Group();
+        this.pivotsGroup.name = "pivotsGroup";
+        this.meshesRelevant.add(this.pivotsGroup);
 
         this.objectsByName = {};
         this.materialsByName = {};
@@ -54,6 +64,10 @@ export class Renderer3D {
         this._viewTravelling = false;
 
         this._isRendering = true;
+    }
+
+    get fps() { 
+        return this.framesDelta ? 1000 / this.framesDelta : 0;
     }
 
     init() {
@@ -67,53 +81,46 @@ export class Renderer3D {
             callbackMouseover,
             options = this.parent.options;
 
-        function prepareDirectionalLight(x, y, z) {
-            let ll = new THREE.DirectionalLight(0xffffff, 0.30);
-            ll.position.set(x, y, z);
-            ll.castShadow = true;
-            ll.shadow.camera.left = -lightPosAn;
-            ll.shadow.camera.right = lightPosAn;
-            ll.shadow.camera.top = lightPosAn;
-            ll.shadow.camera.bottom = -lightPosAn;
-            ll.shadow.camera.far = 50000;
-            ll.shadow.camera.near = 1;
-
-            let directionalLightHelper = new THREE.DirectionalLightHelper(ll, 5000); 
-            me.scene.add( directionalLightHelper); 
-            
-            return ll;
-        }
-        
         if (this.container === null || this.container === undefined) { console.error("Container is null. Halting."); return; }
         if (!this.width) { console.error("Width is null or zero. Halting."); return; }
         if (!this.height) { console.error("Height is null or zero. Halting."); return; }
-        
-        this.scene = new THREE.Scene();
 
+        this.scene = new THREE.Scene();
         this.renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true
         });
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMapSoft = true;
-        
         this.renderer.setClearColor(options.colors.background, 1);
 
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(this.width, this.height);
-		this.renderer.physicallyCorrectLights = true;
-		this.renderer.gammaInput = true;
-		this.renderer.gammaOutput = true;
-		this.renderer.toneMapping = THREE.ReinhardToneMapping;
+
+        this.renderer.physicallyCorrectLights = true;
+        this.renderer.gammaInput = true;
+        this.renderer.gammaOutput = true;
+        this.renderer.toneMapping = THREE.ReinhardToneMapping;
         this.renderer.toneMappingExposure = Math.pow( 0.7, 5.0 );
 
-        this.container.divRenderC.appendChild(this.renderer.domElement);
-        
+        this.css3D = new css3D(this.width, this.height);
+        this.css3D.start();
+
+        if (this.css3D.isRunning) {
+            this.container.divRenderC.appendChild(this.css3D.renderer.domElement);
+            this.css3D.renderer.domElement.appendChild(this.renderer.domElement);
+            this.renderer.domElement.style.position = 'absolute';
+            this.renderer.domElement.style.zIndex = -1;
+            this.renderer.domElement.style.top = 0;
+        } else {
+            this.container.divRenderC.appendChild(this.renderer.domElement);
+        }
+
         this.camera = new THREE.PerspectiveCamera(35, this.width / this.height, 1, 100000);
         this.camera.position.z = options.initialCameraPosition.z;
         this.camera.position.x = options.initialCameraPosition.x;
         this.camera.position.y = options.initialCameraPosition.y;
-        
+
         this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = options.dampingFactor || 0.3;
@@ -128,25 +135,21 @@ export class Renderer3D {
         //this.controls.enableKeys = false;
         //this.controls.enablePan = false;
         //this.controls.enabled = this.parent._freeMove;
-        
+
         this.raycaster = new THREE.Raycaster();
         this.mouseVector = new THREE.Vector2();
 
         lightsGroup = new THREE.Group();
-
-
         lightsGroup.name = "lightsGroup";
-        this.lightsGroup = lightsGroup;                                  
-        this.scene.add(lightsGroup);
+        this.lightsGroup = lightsGroup;
+        this.scene.add(lightsGroup); //-------- scene.add
 
-        this.scene.add(this.meshesHolder);
+        this.scene.add(this.meshesHolder); //-------- scene.add
         let bbox = new THREE.BoundingBoxHelper(this.meshesHolder, 0x000000);
         bbox.visible = false;
         bbox.name = "main-bounding-box";
-        this.scene.add(bbox);
+        this.scene.add(bbox); //-------- scene.add
         this.bbox = bbox;
-
-        this.scene.add(this.objsGlow);        
 
         callbackMouseover = me.parent._callbackMouseover;
         __d__.addEventLnr(this.parent._node.divRenderC, "mousemove", function(e) {
@@ -159,14 +162,14 @@ export class Renderer3D {
 
         __d__.addEventLnr(me.parent._node.divRenderC, "mousedown", function(e) {
             me.mouseStart = new THREE.Vector2(e.clientX, e.clientY);
-        }); 
+        });
 
         __d__.addEventLnr(me.parent._node.divRenderC, "mouseup", function(e) {
 
             let mouseEnd = new THREE.Vector2(e.clientX, e.clientY),
                 delta = me.mouseStart.distanceTo(mouseEnd),
                 insConnection, ev;
-            
+
             //If the distance isn't small the user is rotating the object, not clicking it.
             if (delta > 15) { return; }
 
@@ -183,23 +186,26 @@ export class Renderer3D {
             }
             me.mouseLastClick = new Date();
 
-        });             
+        });
     }
 
     resize3DViewer (w, h) {
         if (!this.camera) { return; }
         this.width = w;
-        this.height = h; 
+        this.height = h;
         this.camera.aspect = w / h;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(w , h);            
+        this.renderer.setSize(w , h);
+        if (this.css3D.isActive) {
+            this.css3D._updateSize(w, h);
+        }
     }
 
     addLight (lightData, name = "") {
         let light,
             bulbGeometry, bulbMat,
             lightColor, groundColor;
-            
+
         if (lightData.color) { lightColor = parseInt(lightData.color.replace(/^#/, ''), 16); }
         if (lightData.skyColor) { lightColor = parseInt(lightData.skyColor.replace(/^#/, ''), 16); }
         if (lightData.groundColor) { groundColor = parseInt(lightData.groundColor.replace(/^#/, ''), 16); }
@@ -237,7 +243,7 @@ export class Renderer3D {
                         color: 0xffff00
                     });
                     light.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
-                }              
+                }
                 break;
 
             case "directionalLight":
@@ -252,10 +258,10 @@ export class Renderer3D {
                 if (lightData.cameraNear) { light.shadow.camera.near = lightData.cameraNear;}
                 break;
 
-            case "ambienLight": 
+            case "ambienLight":
                 light = new THREE.AmbientLight(lightColor, lightData.intensity);
                 break;
-        
+
             default:
                 break;
         }
@@ -274,8 +280,8 @@ export class Renderer3D {
             node = this.containerEvents,
             loadDiv = node.loadingDiv,
             options = this.parent.options,
-            mats, mesh, rt, cm, loader, mtlLoader, objLoader, 
-            
+            mats, mesh, rt, cm, loader, mtlLoader, objLoader,
+
             onProgress = function (xhr) {
                 let percentComplete = xhr.loaded / (xhr.total || 3000000);
                 loadDiv.updateLoader(percentComplete, 0.3);
@@ -290,13 +296,13 @@ export class Renderer3D {
                 if (useLoadingDiv) {
                     //Finish the loading div
                     loadDiv.updateLoader(1, 0.5);
-                    
+
                     //Hide the loading div
                     setTimeout(function() {
                         loadDiv.hide();
                     }, 500);
                 }
-                
+
             };
 
         return new Promise(
@@ -313,7 +319,7 @@ export class Renderer3D {
                     loadDiv.setMessage("Loading model...");
                     loadDiv.show();
                 }
-                
+
                 mtlLoader = new THREE.MTLLoader();
                 mtlLoader.setTexturePath(modelFilesDir);
                 mtlLoader.load(modelFilesMtl, function(materials) {
@@ -327,7 +333,7 @@ export class Renderer3D {
                     } else {
                         myName = modelFilesObj;
                     }
-                    
+
                     for (key in materials.materials) {
                         that.materialsByName[myName.replace(/\./,"")  + "--" + materials.materials[key].name] = materials.materials[key];
                     }
@@ -371,23 +377,23 @@ export class Renderer3D {
                         onLoaded();
                         resolve(modelFilesObj);
                         return;
-                    }, 
-                    useLoadingDiv ? onProgress : null, 
-                    function (xhr) { 
+                    },
+                    useLoadingDiv ? onProgress : null,
+                    function (xhr) {
                         window.alert('An error happened loading assets');
                         console.error(xhr);
                         reject();
-                    });         
+                    });
                 });
             }
         );
-  
+
     }
 
     createMeshesOfModel(fileObj, models = []) {
         let me = this,
             nameModel = fileObj.replace(".", ""),
-            j, lenJ, 
+            j, lenJ,
             mod;
 
         //Create Meshes
@@ -397,7 +403,7 @@ export class Renderer3D {
             let mesh = this.insertModel(mod.obj, mod.position, mod.rotation, mod.scale, "", lenJ > 1);
             if (mesh) {
                 this.meshesHolder.add(mesh);
-            }           
+            }
         }
     }
 
@@ -407,15 +413,15 @@ export class Renderer3D {
         s = { x:1, y:1, z:1 }, baseName = "", doClone = false) {
 
         let me = this,
-            position = new THREE.Vector3(p.x, p.y, p.z), 
-            rotation = new THREE.Vector3(r.x, r.y, r.z), 
+            position = new THREE.Vector3(p.x, p.y, p.z),
+            rotation = new THREE.Vector3(r.x, r.y, r.z),
             scale = new THREE.Vector3(s.x, s.y, s.z),
             nameModel = modelFileObj.replace(".", ""),
             obj = this._modelsLoaded[nameModel];
 
         if (obj) {
             let mesh = doClone ? obj.clone() : obj;
-            
+
             mesh.position.x = position.x;
             mesh.position.y = position.y;
             mesh.position.z = position.z;
@@ -425,7 +431,7 @@ export class Renderer3D {
             mesh.scale.x = scale.x;
             mesh.scale.y = scale.y;
             mesh.scale.z = scale.z;
-            
+
             mesh.updateMatrix();
             mesh.matrixAutoUpdate = false;
 
@@ -453,7 +459,7 @@ export class Renderer3D {
     }
 
     globalToLocal (mesh, leaveInZeros = false) {
-        let bbox = new THREE.BoundingBoxHelper(mesh, 0x000000), 
+        let bbox = new THREE.BoundingBoxHelper(mesh, 0x000000),
             xx, yy, zz;
 
         bbox.update();
@@ -470,70 +476,79 @@ export class Renderer3D {
         mesh.position.z = zz;
     }
 
-    goToView(v, timing = 1.0) {
-        console.error("Obsolete, please use app3dViewsNav.goToViewId(id)");
-    }
-
-    _moveCamera(vw, timing = 1.0) {
-        let me = this;
+    _moveCamera(infowin, timing = 1.0) {
+        let me = this, vw = infowin.view;
         const referenceDistance = 150;
+
+        if (!vw) { console.error("infowin.view not found!"); return; }
+        
 
         let camPos = this.camera.position,
             tarPos = this.controls.target,
             newCamPos = new THREE.Vector3(vw.cameraPosition.x, vw.cameraPosition.y, vw.cameraPosition.z),
+            newTarPos = new THREE.Vector3(vw.targetPosition.x, vw.targetPosition.y, vw.targetPosition.z),
             easeFn = Power2.easeInOut;
 
         timing = timing + Math.log(Math.max(camPos.distanceTo(newCamPos) / referenceDistance, 1)) * timing * 0.3;
         timing = Math.min(5, Math.max(0.01, timing));
-        
+
         this._viewTravelling = true;
         if (timing > 2) { easeFn = Power3.easeInOut; }
 
-        TweenLite.to(camPos, timing, { 
-                x: vw.cameraPosition.x,
-                y: vw.cameraPosition.y,
-                z: vw.cameraPosition.z,
+        TweenLite.to(camPos, timing, {
+                x: newCamPos.x,
+                y: newCamPos.y,
+                z: newCamPos.z,
                 ease: easeFn });
-        TweenLite.to(tarPos, timing, { 
-                x: vw.targetPosition.x,
-                y: vw.targetPosition.y,
-                z: vw.targetPosition.z,
+        TweenLite.to(tarPos, timing, {
+                x: newTarPos.x,
+                y: newTarPos.y,
+                z: newTarPos.z,
                 ease: easeFn });
 
         let ev = __d__.addEventDsptchr("viewchanging");
         ev.view = vw;
-        me.containerEvents.dispatchEvent(ev);                  
+        ev.infowin = infowin;
+        me.containerEvents.dispatchEvent(ev);
+        me.controls.enabled = false;
 
-        setTimeout(function() { 
+        setTimeout(function() {
             me._viewTravelling = false;
             let ev = __d__.addEventDsptchr("viewchanged");
             ev.view = vw;
-            me.containerEvents.dispatchEvent(ev);            
-        }, timing * 1000);             
+            ev.infowin = infowin;
+            me.containerEvents.dispatchEvent(ev);
+            me.controls.enabled = true;
+        }, timing * 1000);
     }
 
 
     animate() {
         var me = this;
-        
+
         function anim() {
-            requestAnimationFrame(anim);            
+            requestAnimationFrame(anim);
             me.controls.update();
             me.render();
         }
-        anim();            
+        anim();
     }
 
     render() {
         if (this._isTakingScreenshot || !this._isRendering) { return; }
+
+        let deltaDif = Date.now() - this.framesLastTime;
+
+        this.framesLastTime = Date.now();
         this.frames += 1;
+        this.framesDelta = deltaDif;
 
         if (!(this.frames & 3)) { //this.frames & 3 - every 4 frames
             this.raycaster.setFromCamera(this.mouseVector.clone(), this.camera);
 
             let intersects = this.raycaster.intersectObjects(this._intersectGroup.children, true),
                 lenI = intersects.length;
-                              
+
             if (lenI > 0) {
                 let intersect0 = intersects[0].object;
 
@@ -551,13 +566,9 @@ export class Renderer3D {
                     this._INTERSECTED = null;
                 }
             }
-        }        
+        }
 
-        /*
-        this.lightsGroup.rotation.x = this.camera.rotation.x;
-        this.lightsGroup.rotation.y = this.camera.rotation.y;
-        this.lightsGroup.rotation.z = this.camera.rotation.z;
-        */
+        if (this.css3D.isActive) { this.css3D.render(this.camera); }
         this.renderer.render(this.scene, this.camera);
     }
 
