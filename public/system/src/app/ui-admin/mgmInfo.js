@@ -6,6 +6,7 @@ var configConsts = require('../../mgmt/config.const');
 
 export class MgmInfo {
     constructor(layv, viewsNav, reactApp, app3d, winInfo) {
+        let ren = app3d.renderer3d;
 
         this.isVisible = false;
         this.layv = layv;
@@ -15,22 +16,25 @@ export class MgmInfo {
         this._app3d = app3d //Ref to parent app3d
         this._winInfo = winInfo //Ref to Info Window
 
+        if (layv) { ren._intersectGroup = ren.meshesHolder; }
     }
 
     //Shows and hides the Mgmt UI
     toggle() {
         let me = this;
+        if (!me.layv) { return; } //Non admin mode.
+
         me.layv.style.display = !me.isVisible ? "block" : "none";
         me.isVisible = !me.isVisible;
 
         if (me.isVisible) {
+            window.app3dMediaNav.pause();
             me.updateCameraCoords();
+            me._app3d.renderer3d.controls.enabled = false;
         } else {
+            me._app3d.renderer3d.controls.enabled = true;
             me._updateWorldData()
-                .then(function() {
-                    me._updateInfoMap();
-                    me._viewsNav._reRenderViews();
-                });
+                .then(() => { console.info("window.config data updated.")} );
         }
     }
 
@@ -46,30 +50,6 @@ export class MgmInfo {
         }
     }
 
-    //Updatess the infoMap after editing in the Mgmt UI
-    _updateInfoMap() {
-        if (!window.app3dMgmtStore) { return; }
-
-        //Update gearList (infowins) from React Store
-        var infowins = window.app3dMgmtStore.getState().infowins.infowinsList.infowins;
-        if (!infowins.length) { return; }
-        
-        //Create new gearList
-        var newGearList = {}, j, lenJ, g;
-        for (j = 0, lenJ = infowins.length; j < lenJ; j += 1) {
-            g = infowins[j];
-            newGearList[g.name] = g;
-        }
-        window.config.gearList = newGearList;
-
-        this._app3d._populateInfomap(
-            window.config.infoMap, 
-            window.config.gearList, 
-            window.config.gearMap);
-
-        this._winInfo.hide(true);
-    }
-
     _updateWorldData() {
         let me = this,
             id = config.mainScene.worldId;
@@ -80,14 +60,24 @@ export class MgmInfo {
                 method: 'get',
                 url: `${configConsts.ROOT_URL}/worldData/${id}`
             })
-            .then(function (response) {
+            .then((response) => {
                 let data = response.data.data;
+                
                 window.config.infowins = data.infowins;
-                window.config.gearList = data.gearList;
-                me._viewsNav._flattenNestedInfowins(window.config);
+                window.config.groupsMap = data.groupsMap;
+                window.config.viewsSets = data.viewsSets;
+                window.config.objectsMap = data.objectsMap;
+
+                me._viewsNav._init();
+
+                me._app3d._datalayer.infoGroupsProcess(data.groupsMap, me._app3d.renderer3d.objectsByName, me._app3d.prefix)
+                    .then((infoMap) => {
+                        window.config.infoMap = infoMap;
+                    });
+
                 resolve();
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.error(error);
                 reject(error);
             });

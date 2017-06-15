@@ -1,6 +1,7 @@
 var __s__ = require('../../utils/js-helpers.js'),
     __d__ = require('../../utils/dom-utilities.js'),
-    SpriteArrow2D = require('../../text2D/SpriteArrow.js'),
+    SpriteArrow2D = require('../../text2d/SpriteArrow.js'),
+    feedbackMod = require('./mods/feedbackModal.js'),
     configConsts = require('../../mgmt/config.const');
 
 "use strict";
@@ -9,6 +10,12 @@ export const DOWN = 0;
 export const UP = 1;
 export const LEFT = 2;
 export const RIGHT = 3;
+
+export const prefixMarker = "arrow_";
+export const isMeshAMarker = (intersected) => {
+    return intersected && intersected.name && intersected.name.indexOf(prefixMarker) === 0;
+}
+
 
 export class MarkersNav {
     constructor(viewsNav, reactApp, app3d, winInfo, mgmInfo) {
@@ -30,6 +37,7 @@ export class MarkersNav {
         this.__markerUINode = {};
         this.__markerUIMounted = false;
         this.__currentEditingMarker = null;
+        this.__currentEditingMarkerData = {};
         this.__currentEditingMarkerIsNew = false;
 
         this.__toCurrentInfowin = null;
@@ -38,21 +46,19 @@ export class MarkersNav {
         this._markerOnLayover = null;
 
         this._createMarkerWorldUI();
-        this._prepareFeedbackLayover();
         this._attachListenersFromInfowindow();
 
     }
 
-    _create2dMarker(marker = {_id: "0", direction: 0, letter: "", position: { x: 0, y: 0, z: 0 }}) {
+    _create2dMarker(marker = {_id: "0", direction: 0, letter: "", position: { x: 0, y: 0, z: 0 }}, markerScale = 16) {
         let me = this,
             arrowRotation = {0: -Math.PI * 5 / 4, 1: -Math.PI * 1 / 4, 2: -Math.PI * 3 / 4, 3: Math.PI / 4};
 
-        function createArrow(name, rotation, letter, x, y, z) {
-            let arrowSprite = new SpriteArrow2D(256, rotation, letter, { fillStyle: "#e69b18"}),
-                labelScale = 16;
+        function createArrow(name, rotation, letter, x, y, z, markerScale) {
+            let arrowSprite = new SpriteArrow2D(256, rotation, letter, { fillStyle: "#e69b18"});
 
             arrowSprite.name = name;
-            arrowSprite.scale.set(labelScale, labelScale, 1);
+            arrowSprite.scale.set(markerScale, markerScale, 1);
             arrowSprite.position.x = x;
             arrowSprite.position.y = y;
             arrowSprite.position.z = z;
@@ -70,7 +76,8 @@ export class MarkersNav {
             marker.letter || "", 
             marker.position.x, 
             marker.position.y, 
-            marker.position.z
+            marker.position.z,
+            markerScale
         );
     }
 
@@ -100,11 +107,12 @@ export class MarkersNav {
             sprite, marker;
         
         if (!infowin || !infowin.markers || !infowin.markers.length) { return; }
-        
+
+        this.__toCurrentInfowin = iw;
 
         for(let j = 0, lenJ = infowin.markers.length; j < lenJ; j += 1) {
             marker = infowin.markers[j];
-            sprite = this._create2dMarker(marker);
+            sprite = this._create2dMarker(marker, infowin.markerScale);
             if (!sprite) { continue; }
 
             this._app3d.renderer3d.markersGroup.add(sprite);
@@ -233,7 +241,8 @@ export class MarkersNav {
 
         if (!this.__markerUIMounted) { return; }
 
-        let infowin = this._viewsNav.currentMLInfoWindow || this._viewsNav.currentInfoWindow,
+        let me = this,
+            infowin = this._viewsNav.currentMLInfoWindow || this._viewsNav.currentInfoWindow,
             cT = this._app3d.renderer3d.controls.target;
 
         if (!infowin) { alert("Please navigate to an infowin"); return; }
@@ -253,8 +262,10 @@ export class MarkersNav {
             this.__markerUINode.positionX.value = selectedMarker.position.x;
             this.__markerUINode.positionY.value = selectedMarker.position.y;
             this.__markerUINode.positionZ.value = selectedMarker.position.z;
-            this.__currentEditingMarker = me.__currentMarkersByName["arrow_" + selectedMarker._id];
+            this.__currentEditingMarker = this.__currentMarkersByName["arrow_" + selectedMarker._id];
             this.__currentEditingMarkerIsNew = false;
+            this.__currentEditingMarkerData = selectedMarker;
+            this.__markerUINode.saver.innerHTML = "Update";
         } else {
             this.__markerUINode.markerTitle.value = "My marker " + (infowin.markers ? infowin.markers.length + 1 : 1);
             this.__markerUINode.markerLetter.value = "";
@@ -266,6 +277,8 @@ export class MarkersNav {
             this.__currentEditingMarker = this._create2dMarker({_id: "temporarySprite", direction:0, letter:"", position: cT});
             this._app3d.renderer3d.meshesHolder.add(this.__currentEditingMarker);
             this.__currentEditingMarkerIsNew = true;
+            this.__currentEditingMarkerData = {};
+            this.__markerUINode.saver.innerHTML = "Create";
         }
 
         if (this.__currentEditingMarker) {
@@ -322,7 +335,7 @@ export class MarkersNav {
 
     _saveCurrentMarker() {
         let me = this,
-            marker = {
+            marker = Object.assign(this.__currentEditingMarkerData, {
                 title: me.__markerUINode.markerTitle.value,
                 letter: me.__markerUINode.markerLetter.value,
                 direction: me.__markerUINode.markerDirection.selectedIndex,
@@ -331,7 +344,7 @@ export class MarkersNav {
                     y: me.__markerUINode.positionY.value,
                     z: me.__markerUINode.positionZ.value,
                 }
-            }, 
+            }), 
             parentId = me.__toCurrentInfowinId;
 
         axios({
@@ -377,34 +390,25 @@ export class MarkersNav {
         this._app3d._baseNode.dispatchEvent(evEm);
     }
 
-    _prepareFeedbackLayover() {
-        this._feedbackMarkup = {
-            layv: document.getElementById("marker-feedback-layv"),
-            text: document.getElementById("marker-feedback-text"),
-            btn: document.getElementById("marker-feedback-dismiss"),
-        }
-        __d__.addEventLnr(this._feedbackMarkup.btn, "click", this._dismissFeedback.bind(this));
-    }
-
     _showFeedbackHtml(marker) {
-        let icon = marker.faIcon ? "<span class='fa " + marker.faIcon + "'> </span><br /><br />" : "";
-        this._feedbackMarkup.text.innerHTML = icon + marker.feedbackHtml;
-        this._feedbackMarkup.btn.innerHTML = marker.dismissText || "Ok";
-        this._feedbackMarkup.layv.style.display = "block";
-    }
-
-    _dismissFeedback() {
         let me = this,
-            evEm = __d__.addEventDsptchr("markerOnDismissFeedback"),
-            markerData = this._markerOnLayover;
+            icon = marker.faIcon ? "<span class='fa " + marker.faIcon + "'> </span><br /><br />" : "";
 
-        this._feedbackMarkup.layv.style.display = "none";
+        const hideCallback = () => {
+            let evEm = __d__.addEventDsptchr("markerOnDismissFeedback"),
+                markerData = me._markerOnLayover;
 
-        evEm.infowin = me.__toCurrentInfowin;
-        evEm.marker = markerData;
-        evEm.feedbackShown = true;
-        this._app3d._baseNode.dispatchEvent(evEm);
+            evEm.infowin = me.__toCurrentInfowin;
+            evEm.marker = markerData;
+            evEm.feedbackShown = true;
+            me._app3d._baseNode.dispatchEvent(evEm);
+
+            if (markerData.toNext) {
+                me._winInfo._localNavigator.goToNext();
+            }
+        };
+
+        feedbackMod.feedbackModal.show(icon + marker.feedbackHtml, marker.dismissText, hideCallback);
     }
-
 
 }
